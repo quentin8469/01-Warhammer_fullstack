@@ -1,0 +1,42 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <div class=" text-center">
+    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Campagne &nbsp;<i class="bi bi-plus-square"></i></h4>
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+                <div class="container text-center text-white">
+                    <div class="row bg-dark bg-gradient bg-opacity-50">
+                        <div class="col">
+                            nom_de_campagne: <br> {{ form.nom_de_campagne }}
+                        </div>
+                        <div class="col">
+                            maitre_du_jeu: <br> {{ form.maitre_du_jeu }}
+                        </div>
+                        <div class="col">
+                            image_campagne: <br> {{ form.image_campagne }}
+                        </div>   
+                    </div>
+                    <br>
+                    <div class="row bg-dark bg-gradient bg-opacity-50">
+                        <div class="col">
+                            campagne_etat: <br> {{ form.campagne_etat }}
+                        </div> 
+                        <div class="col">
+                            date_debut: <br> {{ form.date_debut }}
+                        </div>
+                        <div class="col">
+                            date_end: <br> {{ form.date_end }}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <input class="valid-ticket" type="submit" value="Validez votre campagne">
+        </form>
+        <a class="" href="{% url 'warhammer:liste_campagne'  %}" >Retour page liste</a>
+    </div>
+</div>        
+{% endblock content %}

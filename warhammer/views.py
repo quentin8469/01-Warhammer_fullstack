@@ -1,14 +1,29 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from warhammer.models import Campagne
+from warhammer.forms import NewWarhammerCampagneForm
 
 # Create your views here.
-def homeview(request):
-    return render(request, "warhamTemplate/campagne/details/campaigns_list.html")
+# def homeview(request):
+#     return render(request, "warhamTemplate/campagne/details/campaigns_list.html")
+
+
+##################### creates views #####################
+class WarhamCampaignCreateView(CreateView):
+    """"""
+
+    model = Campagne
+    form_class = NewWarhammerCampagneForm
+    template_name = "warhamTemplate/campagne/create/campaigns_create.html"
+    success_url = "/warhammer/"
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
 ##################### Reads views #####################
 class WarhamCampaignListView(ListView):
+    """ """
+
     model = Campagne
     template_name = "warhamTemplate/campagne/details/campaigns_list.html"
 

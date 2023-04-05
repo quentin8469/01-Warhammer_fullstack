@@ -1,0 +1,27 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Campagne&nbsp;<a href="#"><i class="bi bi-shield-plus"></i></a></h4>
+
+<div class="container text-center text-white">
+    <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Nom du joueur: <br> {{ user.username }}
+        </div>
+        <div class="col">
+            Nom de la Camapagne: <br> {{ personnage.campagne.nom_de_campagne }}
+        </div> 
+        <div class="col">
+            Maitre du jeu: <br> {{ personnage.campagne.maitre_du_jeu.username }}
+        </div>   
+    </div>
+    <br>
+    <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Creation de la campagne: <br> {{ personnage.campagne.date_creation }}
+        </div> 
+        <div class="col">
+            Status de la campagne: <br> {{ personnage.campagne.campagne_etat }}
+        </div>
+        <div class="col">
+            Debut de la campagne: <br> {{ personnage.campagne.date_debut }}
+        </div>
+    </div>
+</div>

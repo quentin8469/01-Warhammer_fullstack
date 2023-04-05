@@ -1,0 +1,91 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Profil du personnage</h4>
+<div class="table-responsive">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Ajouter un plan de carriere&nbsp;<a href="#"><i class="bi bi-plus-square"></i></a></th>
+                <th scope="col">M</th>
+                <th scope="col">CC</th>
+                <th scope="col">CT</th>
+                <th scope="col">F</th>
+                <th scope="col">E</th>
+                <th scope="col">B</th>
+                <th scope="col">I</th>
+                <th scope="col">A</th>
+                <th scope="col">DEX</th>
+                <th scope="col">CD</th>
+                <th scope="col">INT</th>
+                <th scope="col">CL</th>
+                <th scope="col">FM</th>
+                <th scope="col">Soc</th>
+                <th scope="col">Modifier</th>
+                <th scope="col">Effacer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>profil initial</th>
+                <td>{{ profil_initial.mouvement }}</td>
+                <td>{{ profil_initial.capacite_combat }}</td>
+                <td>{{ profil_initial.capacité_tir }}</td>
+                <td>{{ profil_initial.force }}</td>
+                <td>{{ profil_initial.endurance }}</td>
+                <td>{{ profil_initial.point_blessure }}</td>
+                <td>{{ profil_initial.initiative }}</td>
+                <td>{{ profil_initial.nb_attaque }}</td>
+                <td>{{ profil_initial.dexterite }}</td>
+                <td>{{ profil_initial.commandement }}</td>
+                <td>{{ profil_initial.intelligence }}</td>
+                <td>{{ profil_initial.calme }}</td>
+                <td>{{ profil_initial.force_mentale }}</td>
+                <td>{{ profil_initial.sociabilite }}</td>
+                <td><i class="bi bi-lock"></i></td>
+                <td><i class="bi bi-lock"></i></td>
+            </tr>
+            {% for plan_carriere in plan_carrieres %}
+            <tr>
+                {% if plan_carriere.nom %}
+                <th> {{ plan_carriere.nom }}</th>
+                {% else %}
+                <th> plan de carriere</th>
+                {% endif %}
+                <td>{{ plan_carriere.mouvement }}</td>
+                <td>{{ plan_carriere.capacite_combat }}</td>
+                <td>{{ plan_carriere.capacité_tir }}</td>
+                <td>{{ plan_carriere.force }}</td>
+                <td>{{ plan_carriere.endurance }}</td>
+                <td>{{ plan_carriere.point_blessure }}</td>
+                <td>{{ plan_carriere.initiative }}</td>
+                <td>{{ plan_carriere.nb_attaque }}</td>
+                <td>{{ plan_carriere.dexterite }}</td>
+                <td>{{ plan_carriere.commandement }}</td>
+                <td>{{ plan_carriere.intelligence }}</td>
+                <td>{{ plan_carriere.calme }}</td>
+                <td>{{ plan_carriere.force_mentale }}</td>
+                <td>{{ plan_carriere.sociabilite }}</td>
+                <td><a href="#"><i class="bi bi-pencil"></i></a></td>
+                <td><i class="bi bi-trash3"></i></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>profil actuel</th>
+                <td>{{ profil_actuel.mouvement }}</td>
+                <td>{{ profil_actuel.capacite_combat }}</td>
+                <td>{{ profil_actuel.capacité_tir }}</td>
+                <td>{{ profil_actuel.force }}</td>
+                <td>{{ profil_actuel.endurance }}</td>
+                <td>{{ profil_actuel.point_blessure }}</td>
+                <td>{{ profil_actuel.initiative }}</td>
+                <td>{{ profil_actuel.nb_attaque }}</td>
+                <td>{{ profil_actuel.dexterite }}</td>
+                <td>{{ profil_actuel.commandement }}</td>
+                <td>{{ profil_actuel.intelligence }}</td>
+                <td>{{ profil_actuel.calme }}</td>
+                <td>{{ profil_actuel.force_mentale }}</td>
+                <td>{{ profil_actuel.sociabilite }}</td>
+                <td><a href="#"><i class="bi bi-pencil"></i></a></td>
+                <td><i class="bi bi-trash3"></i></td>
+            </tr>
+        </tbody>
+    </table>
+  </div>

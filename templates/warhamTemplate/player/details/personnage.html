@@ -1,0 +1,40 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Personnage&nbsp;<a href="#"><i class="bi bi-shield-plus"></i></a></h4>
+
+<div class="container text-center text-white">
+    <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Nom: <br>{{ personnage.nom }}
+        </div>
+        <div class="col">
+            Race: <br>{{ personnage.race }}
+        </div>
+        <div class="col">
+            Vocation: <br>{{ personnage.vocation }}
+        </div> 
+    </div>
+    <br>
+    <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Alignement: <br>{{ personnage.alignement }}
+        </div>
+        <div class="col">
+            Points de destin: <br>{{ personnage.point_destin }}
+        </div>
+        <div class="col">
+            Points de folie: <br>{{ personnage.point_folie }}
+        </div>    
+    </div>
+    <br>
+    <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Carriere actuelle: <br>{{ carriere_actuelle }}
+        </div>
+        <div class="col">
+            Débouchés: <br>{{ personnage.debouches }} 
+        </div>
+        <div class="col">
+            Encombrement Max: <br>{{ profil_actuel.encombrement_max }} kg
+        </div>
+    </div>
+</div>
+

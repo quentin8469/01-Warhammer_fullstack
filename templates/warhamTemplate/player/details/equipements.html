@@ -1,0 +1,25 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Equipements</h4>
+<div class="table-responsive">
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Objet &nbsp;<a href="#"><i class="bi bi-plus-square"></i></a></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Enc</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Effacer</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for equipement in equipements %}
+            <tr>
+              <td data-bs-toggle="popover" data-bs-title="Note" data-bs-content="{{ equipement.note }}">{{ equipement.nom }}</td>
+              <td>{{ equipement.quantite }}</td>
+              <td>{{ equipement.encombrement }}</td>
+              <td><a href="#"><i class="bi bi-pencil"></i></a></td>
+              <td><a href="#"><i class="bi bi-trash3"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>

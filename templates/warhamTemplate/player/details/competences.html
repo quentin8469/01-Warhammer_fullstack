@@ -1,0 +1,26 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Competence(s) </h4>
+<div class="table-responsive">
+    <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nom &nbsp;<a href="#"><i class="bi bi-plus-square"></i></a></th>
+            <th scope="col">bonus</th>
+            <th scope="col">malus</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Effacer</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for competence in competences %}
+            <tr>
+              <td data-bs-toggle="popover" data-bs-title="Description" data-bs-content="{{ competence.description }}">{{ competence.nom }}</td>
+              <td>{{ competence.bonus }}</td>
+              <td>{{ competence.malus }}</td>
+              <td><a href="#"><i class="bi bi-pencil"></i></a></td>
+              <td><a href="#"><i class="bi bi-trash3"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+

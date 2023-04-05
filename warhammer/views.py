@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from warhammer.models import Campagne
 from warhammer.forms import NewWarhammerCampagneForm
 
@@ -34,3 +34,23 @@ class WarhamCampaignListView(ListView):
         context["campagnes_warhammer"] = campagnes_warhammer
         # context["personnage_warhammer"] = personnage_warhammer
         return super().get_context_data(**context)
+
+
+##################### Updates views #####################
+class WarhamCampagneUpdateView(UpdateView):
+    """"""
+
+    model = Campagne
+    form_class = NewWarhammerCampagneForm
+    template_name = "warhamTemplate/campagne/create/campaigns_create.html"
+    success_url = "/warhammer/"
+
+
+##################### Deletes views #####################
+class WarhamCampagneDeleteViews(DeleteView):
+    """"""
+
+    model = Campagne
+    context_object_name = "campagne"
+    template_name = "warhamTemplate/campagne/delete/campaigns_delete.html"
+    success_url = "/warhammer/"

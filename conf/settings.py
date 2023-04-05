@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # My installed App,
     "account",
     "home",
+    "warhammer",
     # Other App,
 ]
 

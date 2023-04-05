@@ -1,0 +1,19 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Equipement</h4>
+    <div class="container text-center text-white">
+        <h1> {{user.username.upper}} vous souhaitez effacer  un objet de votre équipement</h1>
+        <form enctype="multipart/form-data" method="POST" class="post-form border border-dark p-3">
+        {% csrf_token %}
+        <p>Voulez-vous supprimer cet objet de votre équipement: {{ delete_equipement.nom }} ? </p> 
+            <input class="valid-ticket"type="submit" value="Validez la suppression de l'objet">
+        </form>
+        <a class="" href="{% url 'warhammer:details_personnages' pk=delete_equipement.player.id %}" >Retour page personnage</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

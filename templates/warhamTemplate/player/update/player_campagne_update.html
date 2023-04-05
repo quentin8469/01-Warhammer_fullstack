@@ -1,0 +1,19 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Competence(s)</h4>
+    <div class="container text-center text-white">
+        <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Nom de la campagne: <br> {{ form.campagne }}
+                </div>
+            </div>
+            <input class="valid-ticket" type="submit" value="Validez votre competence">
+        </form>
+        <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page personnage</a> 
+    </div>
+</div>
+{% endblock content %}

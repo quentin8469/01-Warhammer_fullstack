@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from warhammer.models import Campagne, Player
 from warhammer.forms import NewWarhammerCampagneForm
@@ -77,6 +78,36 @@ class WarhamCampagneUpdateView(UpdateView):
     template_name = "warhamTemplate/campagne/create/campaigns_create.html"
     success_url = "/warhammer/"
 
+
+class WarhamPlayerCampagneUpdate(UpdateView):
+    """"""
+
+    model = Player
+    fields = ["campagne"]
+    template_name = "warhamTemplate/player/update/player_campagne_update.html"
+
+    def get_success_url(self):
+        player = Player.objects.get(id=self.kwargs["pk"])
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+# class WarhamPlanCarriereUpdateView(UpdateView):
+#     """"""
+
+#     model = PlanCarriere
+#     form_class = NewPlanCarriereForm
+#     template_name = "player/update/planCarriere_update.html"
+
+#     def get_context_data(self, **kwargs):
+#         context = {}
+#         planCarriere_update = PlanCarriere.objects.get(id=self.kwargs["pk"])
+#         context["planCarriere_update"] = planCarriere_update
+#         return super().get_context_data(**context)
+
+#     def get_success_url(self):
+#         plan_carriere = PlanCarriere.objects.get(id=self.kwargs["pk"])
+#         player = Player.objects.get(id=plan_carriere.player.id)
+#         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 ##################### Deletes views #####################
 class WarhamCampagneDeleteViews(DeleteView):

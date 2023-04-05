@@ -10,7 +10,7 @@
         <form enctype="multipart/form-data" method="POST" class="post-form border border-dark p-3">
         {% csrf_token %}
         <p>Voulez-vous supprimer cette campagne: {{ campagne.nom }} ? </p>
-            <input class="valid-ticket"type="submit" value="Validez la suppression de la comptence">
+            <input class="valid-ticket"type="submit" value="Validez la suppression de la campagne">
         </form>
         <a class="" href="{% url 'warhammer:liste_campagne' %}" >Retour page liste</a>
     </div>

@@ -3,10 +3,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from warhammer.views import (
     WarhamCampaignListView,
+    WarhamPlayerDetailView,
     WarhamCampaignCreateView,
     WarhamCampagneUpdateView,
     WarhamCampagneDeleteViews,
     WarhamCampaignPlayerListView,
+    WarhamPlayerDeleteViews,
 )
 
 
@@ -33,5 +35,15 @@ urlpatterns = [
         "campagne/<int:pk>/",
         WarhamCampaignPlayerListView.as_view(),
         name="liste_personnages",
+    ),
+    path(
+        "player/<int:pk>/",
+        WarhamPlayerDetailView.as_view(),
+        name="details_personnages",
+    ),
+    path(
+        "player_delete/<int:pk>/",
+        WarhamPlayerDeleteViews.as_view(),
+        name="supprimer_personnages",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

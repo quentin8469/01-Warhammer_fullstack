@@ -52,7 +52,7 @@
                     <p class="card-text text-dark">Date de modification: <br>{{ personnage.date_update }}</p>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <a href="#" class="btn btn-success" role="button">Détails</a>
+                    <a href="{% url 'warhammer:details_personnages' pk=personnage.id %}" class="btn btn-success" role="button">Détails</a>
                     <a href="#" class="btn btn-primary" role="button">Editter</a>
                     <a href="#" class="btn btn-danger" role="button">Effacer</a>
                     <a href="{% url 'warhammer:liste_campagne' %}" class="btn btn-info" role="button">Retour</a>

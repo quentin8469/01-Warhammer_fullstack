@@ -6,6 +6,7 @@ from warhammer.views import (
     WarhamCampaignCreateView,
     WarhamCampagneUpdateView,
     WarhamCampagneDeleteViews,
+    WarhamCampaignPlayerListView,
 )
 
 
@@ -27,5 +28,10 @@ urlpatterns = [
         "campagne_delete/<int:pk>/",
         WarhamCampagneDeleteViews.as_view(),
         name="supprimer_campagne",
+    ),
+    path(
+        "campagne/<int:pk>/",
+        WarhamCampaignPlayerListView.as_view(),
+        name="liste_personnages",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

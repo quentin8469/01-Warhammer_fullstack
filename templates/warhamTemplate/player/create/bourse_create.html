@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <div class=" text-center">
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Bourse</h4>
+        <div class="table-responsive">
+            <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type de pièce</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Couronne(s)</td>
+                            <td>{{ form.couronne }} Co</td>
+                            <td><img src="{% static "img/bourse/couronne.png" %}" class="img-fluid img-half" alt="Image" width="10%" height="10%"></td>
+                        </tr>
+                        <tr>
+                            <td>Pistole(s)</td>
+                            <td>{{ form.pistole }} Po</td>
+                            <td><img src="{% static "img/bourse/pistole.png" %}" class="img-fluid" alt="Image" width="10%" height="10%"></td>
+                            </tr>
+                        <tr>
+                            <td>Sous</td>
+                            <td>{{ form.sous }} S</td>
+                            <td><img src="{% static "img/bourse/sous.png" %}" class="img-fluid" alt="Image" width="10%" height="10%"></td>
+                        </tr>
+                        <tr>
+                            <td>Autre(s)</td>
+                            <td>{{ form.autre }}</td>
+                            <td><img src="{% static "img/bourse/Coffrecapitaine.png" %}" class="img-fluid" alt="Image" width="10%" height="10%"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="valid-ticket" type="submit" value="Validez votre personnage">
+            </form>
+            <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page liste</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

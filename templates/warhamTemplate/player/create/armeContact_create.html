@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <div class=" text-center">
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Arme(s)</h4>
+        <div class="table-responsive">
+            <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Armes de contact &nbsp;<i class="bi bi-shield-plus"></i></th>
+                            <th scope="col">I</th>
+                            <th scope="col">CC</th>
+                            <th scope="col">D</th>
+                            <th scope="col">Prd</th>
+                            <th scope="col">Enc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ form.nom }}</td>
+                            <td>{{ form.initiative }}</td>
+                            <td>{{ form.toucher }}</td>
+                            <td>{{ form.degats }}</td>
+                            <td>{{ form.parade }}</td>
+                            <td>{{ form.encombrement }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="valid-ticket" type="submit" value="Validez votre personnage">
+            </form>
+            <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page liste</a>   
+        </div>
+    </div>
+</div>
+{% endblock content %}

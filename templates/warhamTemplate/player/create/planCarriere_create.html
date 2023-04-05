@@ -1,0 +1,60 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <div class=" text-center">
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Nouvelle Carriere</h4>
+        <div class="table-responsive">
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ajouter un plan de carriere</th>
+                            <th scope="col">M</th>
+                            <th scope="col">CC</th>
+                            <th scope="col">CT</th>
+                            <th scope="col">F</th>
+                            <th scope="col">E</th>
+                            <th scope="col">B</th>
+                            <th scope="col">I</th>
+                            <th scope="col">A</th>
+                            <th scope="col">DEX</th>
+                            <th scope="col">CD</th>
+                            <th scope="col">INT</th>
+                            <th scope="col">CL</th>
+                            <th scope="col">FM</th>
+                            <th scope="col">Soc</th>
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Effacer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{{ form.nom }}</th>
+                            <td>{{ form.mouvement }}</td>
+                            <td>{{ form.capacite_combat }}</td>
+                            <td>{{ form.capacité_tir }}</td>
+                            <td>{{ form.force }}</td>
+                            <td>{{ form.endurance }}</td>
+                            <td>{{ form.point_blessure }}</td>
+                            <td>{{ form.initiative }}</td>
+                            <td>{{ form.nb_attaque }}</td>
+                            <td>{{ form.dexterite }}</td>
+                            <td>{{ form.commandement }}</td>
+                            <td>{{ form.intelligence }}</td>
+                            <td>{{ form.calme }}</td>
+                            <td>{{ form.force_mentale }}</td>
+                            <td>{{ form.sociabilite }}</td>
+                            <td><i class="bi bi-pencil"></i></td>
+                            <td><i class="bi bi-trash3"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="valid-ticket" type="submit" value="Validez votre personnage">
+            </form>
+            <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page liste</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

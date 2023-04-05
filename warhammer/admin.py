@@ -1,5 +1,5 @@
 from django.contrib import admin
-from warhammer.models import Campagne
+from warhammer.models import Campagne, Player
 
 # Register your models here.
 
@@ -16,4 +16,32 @@ class CampagneAdmin(admin.ModelAdmin):
         "image_campagne",
         "maitre_du_jeu",
         "campagne_etat",
+    )
+
+
+@admin.register(Player)
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "nom",
+        "race",
+        "sexe",
+        "vocation",
+        "alignement",
+        "age",
+        "taille",
+        "poids",
+        "cheveux",
+        "yeux",
+        "photo_personnage",
+        "point_destin",
+        "debouches",
+        "point_folie",
+        "langue",
+        "note",
+        "mort_tuer",
+        "date_creation",
+        "date_update",
+        "joueur",
+        "campagne",
     )

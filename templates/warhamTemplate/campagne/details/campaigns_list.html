@@ -6,7 +6,34 @@
     <div class="container-xxl text-dark text-center">
         <h1>LISTE DES CAMPAGNES EN COURS</h1>
     </div>
-    
+    <br>
+    <div class="row row-cols-1 row-cols-md-4 g-3">
+        {% for campagne in campagnes_warhammer  %}
+        <div class="col">
+            <div class="card h-100 bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg"%}')">
+                {% if campagne.image_campagne %}
+                    <img src="{{ campagne.image_campagne.url }}" class="object-fit-contain border rounded" alt="Image">
+                {% else %}
+                    <img src="{% static "img/img_default/base_01.png" %}" class="object-fit-contain border rounded" alt="Image">  
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ campagne.nom_de_campagne }}</h5>
+                    <p class="card-text text-dark">Status: {{ campagne.campagne_etat }}</p>
+                    <p class="card-text text-dark">Maitre du jeu: {{ campagne.maitre_du_jeu.username }}</p>
+                    <p class="card-text text-dark">Date de création: {{ campagne.date_creation }}</p>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-success" role="button">Joueurs</a>
+                    <a href="#" class="btn btn-primary" role="button">Editter</a>
+                    <a href="#" class="btn btn-danger" role="button">Effacer</a>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Date de modification: {{ campagne.date_update }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     <div class="container-xxl text-dark text-center">
         <h1>LISTE DES PERSONNAGES DE LA CAMPAGNES EN COURS</h1>
     </div>

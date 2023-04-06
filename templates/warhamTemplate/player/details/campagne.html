@@ -1,7 +1,7 @@
 <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Campagne&nbsp;<small><a href="{% url 'warhammer:ajouter_campagne' pk=personnage.id %}"><i class="bi bi-shield-plus"></i></a></small></h4>
 
 <div class="container text-center text-white">
-    <div class="row bg-dark bg-gradient bg-opacity-50">
+    <div class="row bg-dark bg-gradient">
         <div class="col">
             Nom du joueur: <br> {{ user.username }}
         </div>
@@ -13,7 +13,7 @@
         </div>   
     </div>
     <br>
-    <div class="row bg-dark bg-gradient bg-opacity-50">
+    <div class="row bg-dark bg-gradient">
         <div class="col">
             Creation de la campagne: <br> {{ personnage.campagne.date_creation }}
         </div> 

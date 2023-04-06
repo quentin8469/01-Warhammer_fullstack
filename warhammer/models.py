@@ -65,20 +65,20 @@ class Player(models.Model):
     sexe = models.CharField(max_length=50, choices=CHOICE_SEXE)
     vocation = models.CharField(max_length=50, choices=VOCATION_CHOICE)
     alignement = models.CharField(max_length=50, choices=ALIGEMENT_CHOICE)
-    age = models.PositiveIntegerField(blank=True, null=True)
+    age = models.PositiveIntegerField(blank=True, null=True, default=0)
     taille = models.CharField(max_length=50, blank=True, null=True)
-    poids = models.PositiveIntegerField(blank=True, null=True)
+    poids = models.PositiveIntegerField(blank=True, null=True, default=0)
     cheveux = models.CharField(max_length=50, blank=True, null=True)
     yeux = models.CharField(max_length=50, blank=True, null=True)
     photo_personnage = models.ImageField(
         upload_to="photo_perso/", blank=True, null=True
     )
     point_destin = models.PositiveIntegerField(blank=True, null=True, default=0)
-    debouches = models.TextField(blank=True, null=True)
+    debouches = models.TextField(blank=True, null=True, default="Ajouter débouchés")
     point_folie = models.PositiveIntegerField(blank=True, null=True, default=0)
-    langue = models.CharField(max_length=50, blank=True, null=True)
-    note = models.TextField(blank=True, null=True)
-    mort_tuer = models.TextField(blank=True, null=True)
+    langue = models.CharField(max_length=50, blank=True, null=True, default="A définir")
+    note = models.TextField(blank=True, null=True, default="Aucune note")
+    mort_tuer = models.TextField(blank=True, null=True, default="Ajouter morts tués")
 
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
@@ -147,10 +147,12 @@ class ExperiencePersonnage(models.Model):
 class DescriptionPersonnelle(models.Model):
     """ """
 
-    lieu_naissance = models.CharField(max_length=150, blank=True, null=True)
-    signe_distinctif = models.TextField(blank=True, null=True)
-    Membre_famille = models.TextField(blank=True, null=True)
-    description_perso = models.TextField(blank=True, null=True)
+    lieu_naissance = models.CharField(
+        max_length=150, blank=True, null=True, default="A définir"
+    )
+    signe_distinctif = models.TextField(blank=True, null=True, default="A définir")
+    Membre_famille = models.TextField(blank=True, null=True, default="A définir")
+    description_perso = models.TextField(blank=True, null=True, default="A définir")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -185,7 +187,7 @@ class CaracteristiqueBase(models.Model):
 class PlanCarriere(models.Model):
     """"""
 
-    nom = models.CharField(max_length=50, blank=True, null=True)
+    nom = models.CharField(max_length=50, blank=True, null=True, default="A définir")
     mouvement = models.PositiveIntegerField(default=0)
     capacite_combat = models.PositiveIntegerField(default=0)
     capacité_tir = models.PositiveIntegerField(default=0)
@@ -341,7 +343,7 @@ class Competence(models.Model):
     malus = models.PositiveIntegerField(blank=True, null=True, default=0)
     apprentissage = models.TextField(blank=True, null=True)
     cout_xp = models.PositiveIntegerField(blank=True, null=True, default=0)
-    niveau = models.CharField(max_length=50, blank=True, null=True, default=0)
+    niveau = models.CharField(max_length=50, blank=True, null=True, default="Initial")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -361,7 +363,7 @@ class ArmeContact(models.Model):
     degats = models.IntegerField(blank=True, null=True, default=0)
     parade = models.IntegerField(blank=True, null=True, default=0)
     encombrement = models.PositiveIntegerField(blank=True, null=True, default=0)
-    note = models.TextField(blank=True, null=True)
+    note = models.TextField(blank=True, null=True, default="Aucune note")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -380,11 +382,13 @@ class ArmeDistance(models.Model):
     porte_longue = models.PositiveIntegerField(blank=True, null=True, default=0)
     porte_extreme = models.PositiveIntegerField(blank=True, null=True, default=0)
     force_effective = models.IntegerField(blank=True, null=True, default=0)
-    armer_tirer = models.CharField(max_length=50, blank=True, null=True)
+    armer_tirer = models.CharField(
+        max_length=50, blank=True, null=True, default="A définir"
+    )
     encombrement = models.PositiveIntegerField(blank=True, null=True, default=0)
     munitions = models.CharField(max_length=50, blank=True, null=True, default=0)
     nb_munitions = models.PositiveIntegerField(blank=True, null=True, default=0)
-    note = models.TextField(blank=True, null=True)
+    note = models.TextField(blank=True, null=True, default="Aucune note")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -412,7 +416,7 @@ class Armure(models.Model):
     protection = models.PositiveIntegerField(blank=True, null=True, default=0)
     localisation = models.CharField(max_length=50, choices=choix_loc)
     encombrement = models.PositiveIntegerField(blank=True, null=True, default=0)
-    note = models.TextField(blank=True, null=True)
+    note = models.TextField(blank=True, null=True, default="Aucune note")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -427,9 +431,9 @@ class Equipement(models.Model):
     """ """
 
     nom = models.CharField(max_length=50, blank=False, null=False)
-    quantite = models.PositiveIntegerField(blank=True, null=True)
-    encombrement = models.PositiveIntegerField(blank=True, null=True)
-    note = models.TextField(blank=True, null=True)
+    quantite = models.PositiveIntegerField(blank=True, null=True, default=0)
+    encombrement = models.PositiveIntegerField(blank=True, null=True, default=0)
+    note = models.TextField(blank=True, null=True, default="Aucune note")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:
@@ -447,7 +451,7 @@ class Bourse(models.Model):
     pistole = models.PositiveIntegerField(blank=True, null=True, default=0)
     sous = models.PositiveIntegerField(blank=True, null=True, default=0)
     encombrement = models.PositiveIntegerField(blank=True, null=True, default=0)
-    autre = models.TextField(blank=True, null=True)
+    autre = models.TextField(blank=True, null=True, default="A définir")
     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
 
     class Meta:

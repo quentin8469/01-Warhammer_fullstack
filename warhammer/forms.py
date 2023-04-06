@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin import widgets
 from warhammer.models import (
     Campagne,
     Player,
@@ -35,8 +36,20 @@ class NewWarhammerCampagneForm(forms.ModelForm):
             "date_end",
         ]
         widgets = {
-            "date_debut": forms.DateInput(attrs={"style": "width:15ch"}),
-            "date_end": forms.DateInput(attrs={"style": "width:15ch"}),
+            "date_debut": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "placeholder": "yyyy-mm-dd (DOB)",
+                    "style": "width:15ch",
+                }
+            ),
+            "date_end": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "placeholder": "yyyy-mm-dd (DOB)",
+                    "style": "width:15ch",
+                }
+            ),
         }
 
 

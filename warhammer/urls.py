@@ -215,5 +215,25 @@ urlpatterns = [
         "Edit_destin/<int:pk>/",
         WarhamPointDestinUpdateView.as_view(),
         name="editter_destin",
+    ),  #### Monture url ####
+    path(
+        "monture/<int:pk>/",
+        WarhamMontureListView.as_view(),
+        name="details_monture",
     ),
+    path(
+        "<int:pk>/AjouterMonture/",
+        WarhamMontureCreateView.as_view(),
+        name="ajouter_monture",
+    ),
+    path(
+        "Edit_monture/<int:pk>/",
+        WarhamMontureUpdateView.as_view(),
+        name="editter_monture",
+    ),
+    path(
+        "delete_monture/<int:pk>/",
+        WarhamMontureDeleteViews.as_view(),
+        name="supprimer_monture",
+    ),  #### Magie url ####
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

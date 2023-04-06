@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "warhamTemplate/base/base_warham.html" %}
 {% load static %}
 {% block content %}
 <div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
@@ -21,12 +21,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Note(s)
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_magie' pk=personnage.id %}">Magie(s)</a>
+                    <a class="nav-link active" aria-current="true" href="#">Magie(s)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_monture' pk=personnage.id %}">Monture(s)</a>
@@ -36,6 +31,15 @@
                         Inventaire
                     </button>
                 </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Note(s)
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:liste_campagne'  %}">Retour</a>
+                </li>
+                
             </ul>
         </div>
         <!-- FIN Navigation TABS-->

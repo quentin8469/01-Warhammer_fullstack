@@ -370,7 +370,7 @@ class WarhamMontureCreateView(CreateView):
 
     model = Monture
     form_class = NewMontureForm
-    template_name = "monture/create/monture_create.html"
+    template_name = "warhamTemplate/monture/create/monture_create.html"
 
     def form_valid(self, form):
         form.instance.player = Player.objects.get(id=self.kwargs["pk"])
@@ -949,7 +949,7 @@ class WarhamMontureDeleteViews(DeleteView):
 
     model = Monture
     context_object_name = "delete_monture"
-    template_name = "monture/delete/monture_delete.html"
+    template_name = "warhamTemplate/monture/delete/monture_delete.html"
 
     def get_success_url(self):
         monture = Monture.objects.get(id=self.kwargs["pk"])

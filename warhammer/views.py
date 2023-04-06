@@ -1,7 +1,57 @@
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from warhammer.models import Campagne, Player
-from warhammer.forms import NewWarhammerCampagneForm
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+    DetailView,
+)
+from warhammer.models import (
+    Campagne,
+    Player,
+    PointDeBlessure,
+    PointDeDestin,
+    PlanCarriere,
+    Equipement,
+    ExperiencePersonnage,
+    DescriptionPersonnelle,
+    CaracteristiqueActuelle,
+    CaracteristiqueBase,
+    ArmeContact,
+    ArmeDistance,
+    Armure,
+    Bourse,
+    Magie,
+    Monture,
+    Sortilege,
+    Competence,
+)
+from warhammer.forms import (
+    NewWarhammerPlayerForm,
+    NewCaracteristiqueBaseForm,
+    NewPlanCarriereForm,
+    NewCaracteristiqueActuelleForm,
+    NewCompetenceForm,
+    NewEquipementForm,
+    NewDescriptionPersonnelleForm,
+    NewArmeContactForm,
+    NewArmeDistanceForm,
+    NewArmureForm,
+    NewMagieForm,
+    NewBourseForm,
+    NewMontureForm,
+    NewExperiencePersonnageForm,
+    NewWarhammerCampagneForm,
+    NewPointDeBlessureForm,
+    NewPointDeDestinForm,
+    NewSortilegeForm,
+)
+from warhammer.utils import (
+    list_players_attak_rank,
+    dict_players_attak_rank,
+    format_dict_players_attak_rank,
+    get_actual_carriere,
+)
 
 # Create your views here.
 # def homeview(request):
@@ -91,23 +141,24 @@ class WarhamPlayerCampagneUpdate(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
-# class WarhamPlanCarriereUpdateView(UpdateView):
-#     """"""
+class WarhamPlanCarriereUpdateView(UpdateView):
+    """"""
 
-#     model = PlanCarriere
-#     form_class = NewPlanCarriereForm
-#     template_name = "player/update/planCarriere_update.html"
+    model = PlanCarriere
+    form_class = NewPlanCarriereForm
+    template_name = "player/update/planCarriere_update.html"
 
-#     def get_context_data(self, **kwargs):
-#         context = {}
-#         planCarriere_update = PlanCarriere.objects.get(id=self.kwargs["pk"])
-#         context["planCarriere_update"] = planCarriere_update
-#         return super().get_context_data(**context)
+    def get_context_data(self, **kwargs):
+        context = {}
+        planCarriere_update = PlanCarriere.objects.get(id=self.kwargs["pk"])
+        context["planCarriere_update"] = planCarriere_update
+        return super().get_context_data(**context)
 
-#     def get_success_url(self):
-#         plan_carriere = PlanCarriere.objects.get(id=self.kwargs["pk"])
-#         player = Player.objects.get(id=plan_carriere.player.id)
-#         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+    def get_success_url(self):
+        plan_carriere = PlanCarriere.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=plan_carriere.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
 
 ##################### Deletes views #####################
 class WarhamCampagneDeleteViews(DeleteView):

@@ -22,7 +22,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="true" href="#">Magie(s)</a>
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_magie' pk=personnage.id %}">Magie(s)</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_monture' pk=personnage.id %}">Monture(s)</a>

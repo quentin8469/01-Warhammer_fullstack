@@ -529,7 +529,7 @@ class WarhamMagieListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = {}
-        magies = Magie.objects.filter(player=self.kwargs["pk"])
+        magies = Magie.objects.get(player=self.kwargs["pk"])
         personnage = Player.objects.get(id=self.kwargs["pk"])
         context["magies"] = magies
         context["personnage"] = personnage

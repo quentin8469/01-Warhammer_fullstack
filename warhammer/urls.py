@@ -236,4 +236,9 @@ urlpatterns = [
         WarhamMontureDeleteViews.as_view(),
         name="supprimer_monture",
     ),  #### Magie url ####
+    path(
+        "magie/<int:pk>/",
+        WarhamMagieListView.as_view(),
+        name="details_magie",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

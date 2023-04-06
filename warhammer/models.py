@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from account.models import CustomUser
 
 
@@ -97,19 +99,6 @@ class Player(models.Model):
 
 class EncombrementPersonnage(models.Model):
     pass
-
-
-class PointDeBlessure(models.Model):
-    """"""
-
-    pdb_max = models.PositiveIntegerField(blank=True, null=True, default=0)
-    pdb_actuel = models.IntegerField(blank=True, null=True, default=0)
-    nb_blessure = models.PositiveIntegerField(blank=True, null=True, default=0)
-    player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = "Point de blessure"
-        verbose_name_plural = "Points de blessures"
 
 
 class PointDeDestin(models.Model):
@@ -263,20 +252,13 @@ class CaracteristiqueActuelle(models.Model):
         Calcul les initiatives en fonction du nombre d'attaque du personnage
         return une liste de tuple avec le nom et l'initiative [(nom,initiative)]
         """
-        init_list = []
-        init_list.append((self.initiative, self.player.nom))
+        init_list = [(self.initiative, self.player.nom)]
         if self.nb_attaque > 1:
             delta_init = self.initiative / self.nb_attaque
-            new_init = []
-            new_init.append(self.initiative)
-            new_tuple_list = []
-            new_tuple_list.append((self.initiative, self.player.nom))
-            i = 0
-            while i != self.nb_attaque - 1:
-                init_calk = new_init[-1] - delta_init
-                new_init.append(int(init_calk))
-                new_tuple_list.append((int(init_calk), self.player.nom))
-                i += 1
+            new_tuple_list = [(self.initiative, self.player.nom)]
+            for i in range(1, self.nb_attaque):
+                init_calk = int(new_tuple_list[-1][0] - delta_init)
+                new_tuple_list.append((init_calk, self.player.nom))
             return new_tuple_list
         return init_list
 
@@ -332,6 +314,30 @@ class CaracteristiqueActuelle(models.Model):
         mouvement_kmh["Normale"] = self.mouvement * 1.5
         mouvement_kmh["Rapide"] = self.mouvement * 5.75
         return mouvement_kmh
+
+
+class PointDeBlessure(models.Model):
+    """ """
+
+    pdb_max = models.PositiveIntegerField(blank=True, null=True, default=0)
+    pdb_actuel = models.IntegerField(blank=True, null=True, default=0)
+    nb_blessure = models.PositiveIntegerField(blank=True, null=True, default=0)
+    player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Point de blessure"
+        verbose_name_plural = "Points de blessures"
+
+    @receiver(post_save, sender=CaracteristiqueActuelle)
+    def update_pdb_max(sender, instance, **kwargs):
+        """
+        Utilisation du signal post_save pour mettre à jour pdb_max après
+        la mise à jour des points de blessure du modèle CaracteristiqueActuelle.
+        Il faut tout de même créer l'objet PointDeBlessure au préalable.
+        """
+        pdb_max = instance.point_blessure
+        player = instance.player
+        PointDeBlessure.objects.filter(player=player).update(pdb_max=pdb_max)
 
 
 class Competence(models.Model):

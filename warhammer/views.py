@@ -484,10 +484,14 @@ class WarhamPlayerDetailView(DetailView):
             armes_distances = ArmeDistance.objects.filter(player=self.kwargs["pk"])
             armures_player = Armure.objects.filter(player=self.kwargs["pk"])
             bourse = Bourse.objects.get(player=self.kwargs["pk"])
+            blessures = PointDeBlessure.objects.get(player=self.kwargs["pk"])
+            destin = PointDeDestin.objects.get(player=self.kwargs["pk"])
             last_carrriere = get_actual_carriere(plan_carrieres)
             # details player view contexts
             context["personnage"] = personnage
             context["experience"] = experience
+            context["blessures"] = blessures
+            context["destin"] = destin
             context["bourse"] = bourse
             context["description"] = description
             context["competences"] = competences
@@ -803,6 +807,44 @@ class WarhamMontureUpdateView(UpdateView):
         monture = Monture.objects.get(id=self.kwargs["pk"])
         player = Player.objects.get(id=monture.player.id)
         return reverse("warhammer:details_monture", kwargs={"pk": player.id})
+
+
+class WarhamPointDestinUpdateView(UpdateView):
+    """"""
+
+    model = PointDeDestin
+    form_class = NewPointDeDestinForm
+    template_name = "warhamTemplate/player/update/destin_update.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        destin_update = PointDeDestin.objects.get(id=self.kwargs["pk"])
+        context["destin_update"] = destin_update
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        destin = PointDeDestin.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=destin.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamPointBlessureUpdateView(UpdateView):
+    """"""
+
+    model = PointDeBlessure
+    form_class = NewPointDeBlessureForm
+    template_name = "warhamTemplate/player/update/blessure_update.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        blessure_update = PointDeBlessure.objects.get(id=self.kwargs["pk"])
+        context["blessure_update"] = blessure_update
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        blessure = PointDeBlessure.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=blessure.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
 ##################### Deletes views #####################

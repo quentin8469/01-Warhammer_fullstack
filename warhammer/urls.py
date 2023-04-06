@@ -39,6 +39,8 @@ from warhammer.views import (
     WarhamCompetenceDeleteViews,
     WarhamEquipementDeleteViews,
     WarhamBourseDeleteViews,
+    WarhamPointBlessureUpdateView,
+    WarhamPointDestinUpdateView,
     WarhamMontureDeleteViews,
 )
 
@@ -203,5 +205,15 @@ urlpatterns = [
         "Edit_experience/<int:pk>/",
         WarhamExperienceUpdateView.as_view(),
         name="editter_experience",
+    ),  #### Points de blessure url ####
+    path(
+        "Edit_blessure/<int:pk>/",
+        WarhamPointBlessureUpdateView.as_view(),
+        name="editter_blessure",
+    ),  #### Points de destin url ####
+    path(
+        "Edit_destin/<int:pk>/",
+        WarhamPointDestinUpdateView.as_view(),
+        name="editter_destin",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

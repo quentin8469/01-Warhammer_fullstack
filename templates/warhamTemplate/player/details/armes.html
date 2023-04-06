@@ -51,7 +51,7 @@
         <td>{{ armes_distance.porte_longue }}</td>
         <td>{{ armes_distance.porte_extreme }}</td>
         <td>{{ armes_distance.force_effective }}</td>
-        <td>{{ armes_distance.armer_tirer }}</td>
+        <td><small>{{ armes_distance.armer_tirer }}</small></td>
         <td>{{ armes_distance.encombrement }}</td>
         <td><a href="{% url 'warhammer:editter_armeDistance' pk=armes_distance.id %}"><i class="bi bi-pencil"></i></a></td>
         <td><a href="{% url 'warhammer:supprimer_armeDistance' pk=armes_distance.id %}"><i class="bi bi-trash3"></i></a></td>

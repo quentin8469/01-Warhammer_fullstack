@@ -458,7 +458,7 @@ class WarhamPlayerDetailView(DetailView):
                 player=self.kwargs["pk"]
             )
             experience = ExperiencePersonnage.objects.get(player=self.kwargs["pk"])
-            description = DescriptionPersonnelle.objects.filter(id=self.kwargs["pk"])
+            description = DescriptionPersonnelle.objects.get(id=self.kwargs["pk"])
             competences = Competence.objects.filter(player=self.kwargs["pk"])
             equipements = Equipement.objects.filter(player=self.kwargs["pk"])
             armes_contacts = ArmeContact.objects.filter(player=self.kwargs["pk"])

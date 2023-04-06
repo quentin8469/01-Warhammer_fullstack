@@ -1,4 +1,5 @@
 {% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
 {% block content %}
 <div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
     <div class=" text-center">
@@ -46,9 +47,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <input class="valid-ticket" type="submit" value="Validez votre personnage">
+                <input class="valid-ticket" type="submit" value="Validez votre plan de carriere">
             </form>
-            <a class="" href="#" >Retour page liste</a>
+            <a class="" href="{% url 'warhammer:details_personnages' pk=planCarriere_update.player.id %}" >Retour page liste</a>
             
         </div>
     </div>

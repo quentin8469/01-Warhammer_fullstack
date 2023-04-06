@@ -309,7 +309,7 @@ class WarhamBourseCreateView(CreateView):
 
     model = Bourse
     form_class = NewBourseForm
-    template_name = "player/create/bourse_create.html"
+    template_name = "warhamTemplate/player/create/bourse_create.html"
 
     def form_valid(self, form):
         form.instance.player = Player.objects.get(id=self.kwargs["pk"])
@@ -332,7 +332,7 @@ class WarhamPlanCarriereCreateView(CreateView):
 
     model = PlanCarriere
     form_class = NewPlanCarriereForm
-    template_name = "player/create/planCarriere_create.html"
+    template_name = "warhamTemplate/player/create/planCarriere_create.html"
 
     def form_valid(self, form):
         form.instance.player = Player.objects.get(id=self.kwargs["pk"])
@@ -678,7 +678,7 @@ class WarhamCaracteristiqueActuelleUpdateView(UpdateView):
 
     model = CaracteristiqueActuelle
     form_class = NewCaracteristiqueActuelleForm
-    template_name = "player/update/carriereActuelle_update.html"
+    template_name = "warhamTemplate/player/update/carriereActuelle_update.html"
 
     def get_context_data(self, **kwargs):
         context = {}

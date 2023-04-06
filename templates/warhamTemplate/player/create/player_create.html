@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "warhamTemplate/base/base_warham.html" %}
 {% load static %}
 
 {% block content %}
@@ -16,37 +16,37 @@
         {% csrf_token %}
             <div class="row g-2 ">
                 <div class="col-6">       
-                    <div class="p-3 border border-dark">{% include "player/create/personnage_create.html" %}</div>   
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/personnage_create.html" %}</div>   
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/campagne_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/campagne_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                        <div class="p-3 border border-dark">{% include "player/create/details_personnels_create.html" %}</div>
+                        <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/details_personnels_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/points_xp_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/points_xp_create.html" %}</div>
                 </div>
                 <div class="col">
-                    <div class="p-3 border border-dark">{% include "player/create/profil_carac_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/profil_carac_create.html" %}</div>
                 </div>
             </div>
             <br>
             <div class="row g-2 ">
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/armes_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/armes_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/armures_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/armures_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/competences_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/competences_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/equipements_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/equipements_create.html" %}</div>
                 </div>
                 <div class="col-6">
-                    <div class="p-3 border border-dark">{% include "player/create/argents_create.html" %}</div>
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/argents_create.html" %}</div>
                 </div>  
             </div>
             <!-- FIN fiche creation de personnage -->

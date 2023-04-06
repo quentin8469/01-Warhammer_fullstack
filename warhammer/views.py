@@ -1,10 +1,12 @@
 from django.urls import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (
     ListView,
     CreateView,
     UpdateView,
     DeleteView,
     DetailView,
+    View,
 )
 from warhammer.models import (
     Campagne,
@@ -100,7 +102,7 @@ class WarhamCampaignPlayerListView(ListView):
         return super().get_context_data(**context)
 
 
-class WarhamPlayerDetailView(DeleteView):
+class WarhamPlayerDetailView(DetailView):
     """class pour afficher les détails d'un personnage joueur warhammer"""
 
     model = Player
@@ -110,12 +112,105 @@ class WarhamPlayerDetailView(DeleteView):
         context = {}
         try:
             personnage = Player.objects.get(id=self.kwargs["pk"])
+            profil_initial = CaracteristiqueBase.objects.get(player=self.kwargs["pk"])
+            plan_carrieres = PlanCarriere.objects.filter(player=self.kwargs["pk"])
+            profil_actuel = CaracteristiqueActuelle.objects.get(
+                player=self.kwargs["pk"]
+            )
+            experience = ExperiencePersonnage.objects.get(player=self.kwargs["pk"])
+            description = DescriptionPersonnelle.objects.get(id=self.kwargs["pk"])
+            competences = Competence.objects.filter(player=self.kwargs["pk"])
+            equipements = Equipement.objects.filter(player=self.kwargs["pk"])
+            armes_contacts = ArmeContact.objects.filter(player=self.kwargs["pk"])
+            armes_distances = ArmeDistance.objects.filter(player=self.kwargs["pk"])
+            armures_player = Armure.objects.filter(player=self.kwargs["pk"])
+            bourse = Bourse.objects.get(player=self.kwargs["pk"])
+            # get dict of all initiative by attaque
+            player_campagne = Player.objects.filter(campagne=personnage.campagne.id)
+            carac_actu_player = []
+            for player in player_campagne:
+                carac_actu = CaracteristiqueActuelle.objects.get(player=player.id)
+                carac_actu_player.append(carac_actu)
+            list_attak_rank = list_players_attak_rank(carac_actu_player)
+            dict_attak_rank = dict_players_attak_rank(list_attak_rank)
+            format_dict_attak_rank = format_dict_players_attak_rank(dict_attak_rank)
+            # get the last carriere in plan_carrieres
+            last_carrriere = get_actual_carriere(plan_carrieres)
             # details player view contexts
             context["personnage"] = personnage
+            context["experience"] = experience
+            context["bourse"] = bourse
+            context["description"] = description
+            context["competences"] = competences
+            context["profil_initial"] = profil_initial
+            context["profil_actuel"] = profil_actuel
+            context["plan_carrieres"] = plan_carrieres
+            context["armes_contacts"] = armes_contacts
+            context["armes_distances"] = armes_distances
+            context["equipements"] = equipements
+            context["dict_attak_rank"] = format_dict_attak_rank
+            context["armures"] = armures_player
+            context["carriere_actuelle"] = last_carrriere[-1]
         except:
             personnage = Player.objects.get(id=self.kwargs["pk"])
+            profil_initial = CaracteristiqueBase.objects.get(player=self.kwargs["pk"])
+            plan_carrieres = PlanCarriere.objects.filter(player=self.kwargs["pk"])
+            profil_actuel = CaracteristiqueActuelle.objects.get(
+                player=self.kwargs["pk"]
+            )
+            experience = ExperiencePersonnage.objects.get(player=self.kwargs["pk"])
+            description = DescriptionPersonnelle.objects.filter(id=self.kwargs["pk"])
+            competences = Competence.objects.filter(player=self.kwargs["pk"])
+            equipements = Equipement.objects.filter(player=self.kwargs["pk"])
+            armes_contacts = ArmeContact.objects.filter(player=self.kwargs["pk"])
+            armes_distances = ArmeDistance.objects.filter(player=self.kwargs["pk"])
+            armures_player = Armure.objects.filter(player=self.kwargs["pk"])
+            bourse = Bourse.objects.get(player=self.kwargs["pk"])
+            last_carrriere = get_actual_carriere(plan_carrieres)
             # details player view contexts
             context["personnage"] = personnage
+            context["experience"] = experience
+            context["bourse"] = bourse
+            context["description"] = description
+            context["competences"] = competences
+            context["profil_initial"] = profil_initial
+            context["profil_actuel"] = profil_actuel
+            context["plan_carrieres"] = plan_carrieres
+            context["armes_contacts"] = armes_contacts
+            context["armes_distances"] = armes_distances
+            context["equipements"] = equipements
+            context["armures"] = armures_player
+            context["carriere_actuelle"] = last_carrriere[-1]
+        return super().get_context_data(**context)
+
+
+class WarhamMontureListView(ListView):
+    """ """
+
+    model = Monture
+    template_name = "warhamTemplate/monture/details/monture_details.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        montures = Monture.objects.filter(player=self.kwargs["pk"])
+        personnage = Player.objects.get(id=self.kwargs["pk"])
+        context["montures"] = montures
+        context["personnage"] = personnage
+        return super().get_context_data(**context)
+
+
+class WarhamMagieListView(ListView):
+    """ """
+
+    model = Magie
+    template_name = "warhamTemplate/magie/details/magie_details.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        magies = Magie.objects.filter(player=self.kwargs["pk"])
+        personnage = Player.objects.get(id=self.kwargs["pk"])
+        context["magies"] = magies
+        context["personnage"] = personnage
         return super().get_context_data(**context)
 
 

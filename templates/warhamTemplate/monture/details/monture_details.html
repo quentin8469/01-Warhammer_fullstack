@@ -1,0 +1,97 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <!-- logo -->
+    <div>
+        <img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt="">
+    </div>
+    <br>
+    <!-- Navigation TABS -->
+    <div class=" text-center">
+        <h1>FEUILLE DE PERSONNAGE</h1>
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_personnages' pk=personnage.id %}">Personnage</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                        Description
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Note(s)
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_magie' pk=personnage.id %}">Magie(s)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_monture' pk=personnage.id %}">Monture(s)</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Inventaire
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <!-- FIN Navigation TABS-->
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Profil des montures</h4>
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Ajouter monture&nbsp;<a href="{% url 'warhammer:ajouter_monture' pk=personnage.id %}"><i class="bi bi-shield-plus"></i></a></th>
+                        <th scope="col">M</th>
+                        <th scope="col">CC</th>
+                        <th scope="col">CT</th>
+                        <th scope="col">F</th>
+                        <th scope="col">E</th>
+                        <th scope="col">B</th>
+                        <th scope="col">I</th>
+                        <th scope="col">A</th>
+                        <th scope="col">DEX</th>
+                        <th scope="col">CD</th>
+                        <th scope="col">INT</th>
+                        <th scope="col">CL</th>
+                        <th scope="col">FM</th>
+                        <th scope="col">Soc</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Effacer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for monture in montures %}
+                    <tr>
+                        {% if monture.nom %}
+                        <th> {{ monture.nom }}</th>
+                        {% else %}
+                        <th> plan de carriere</th>
+                        {% endif %}
+                        <td>{{ monture.mouvement }}</td>
+                        <td>{{ monture.capacite_combat }}</td>
+                        <td>{{ monture.capacité_tir }}</td>
+                        <td>{{ monture.force }}</td>
+                        <td>{{ monture.endurance }}</td>
+                        <td>{{ monture.point_blessure }}</td>
+                        <td>{{ monture.initiative }}</td>
+                        <td>{{ monture.nb_attaque }}</td>
+                        <td>{{ monture.dexterite }}</td>
+                        <td>{{ monture.commandement }}</td>
+                        <td>{{ monture.intelligence }}</td>
+                        <td>{{ monture.calme }}</td>
+                        <td>{{ monture.force_mentale }}</td>
+                        <td>{{ monture.sociabilite }}</td>
+                        <td><a href="{% url 'warhammer:editter_monture' pk=monture.id %}"><i class="bi bi-pencil"></i></a></td>
+                        <td><a href="{% url 'warhammer:supprimer_monture' pk=monture.id %}"><i class="bi bi-trash3"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -424,6 +424,8 @@ class WarhamPlayerDetailView(DetailView):
             armes_distances = ArmeDistance.objects.filter(player=self.kwargs["pk"])
             armures_player = Armure.objects.filter(player=self.kwargs["pk"])
             bourse = Bourse.objects.get(player=self.kwargs["pk"])
+            blessures = PointDeBlessure.objects.get(player=self.kwargs["pk"])
+            destin = PointDeDestin.objects.get(player=self.kwargs["pk"])
             # get dict of all initiative by attaque
             player_campagne = Player.objects.filter(campagne=personnage.campagne.id)
             carac_actu_player = []
@@ -439,6 +441,8 @@ class WarhamPlayerDetailView(DetailView):
             context["personnage"] = personnage
             context["experience"] = experience
             context["bourse"] = bourse
+            context["blessures"] = blessures
+            context["destin"] = destin
             context["description"] = description
             context["competences"] = competences
             context["profil_initial"] = profil_initial

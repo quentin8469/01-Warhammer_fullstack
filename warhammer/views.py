@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (
     ListView,
@@ -71,6 +72,304 @@ class WarhamCampaignCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class WarhamPlayerCreateView(View):
+    template_name = "warhamTemplate/player/create/player_create.html"
+
+    def get(self, request):
+        form1 = NewWarhammerPlayerForm(prefix="form1")
+        form2 = NewCaracteristiqueBaseForm(prefix="form2")
+        form3 = NewPlanCarriereForm(prefix="form3")
+        form4 = NewCaracteristiqueActuelleForm(prefix="form4")
+        form5 = NewCompetenceForm(prefix="form5")
+        form6 = NewEquipementForm(prefix="form6")
+        form7 = NewDescriptionPersonnelleForm(prefix="form7")
+        form8 = NewArmeContactForm(prefix="form8")
+        form9 = NewArmeDistanceForm(prefix="form9")
+        form10 = NewArmureForm(prefix="form10")
+        # form11 = NewMagieForm(prefix="form11")
+        form12 = NewBourseForm(prefix="form12")
+        # form13 = NewMontureForm(prefix="form13")
+        form14 = NewExperiencePersonnageForm(prefix="form14")
+        form15 = NewWarhammerCampagneForm(prefix="form15")
+        return render(
+            request,
+            self.template_name,
+            {
+                "form1": form1,
+                "form2": form2,
+                "form3": form3,
+                "form4": form4,
+                "form5": form5,
+                "form6": form6,
+                "form7": form7,
+                "form8": form8,
+                "form9": form9,
+                "form10": form10,
+                # "form11": form11,
+                "form12": form12,
+                # "form13": form13,
+                "form14": form14,
+                "form15": form15,
+            },
+        )
+
+    def post(self, request):
+        form1 = NewWarhammerPlayerForm(request.POST, prefix="form1")
+        form2 = NewCaracteristiqueBaseForm(request.POST, prefix="form2")
+        form3 = NewPlanCarriereForm(request.POST, prefix="form3")
+        form4 = NewCaracteristiqueActuelleForm(request.POST, prefix="form4")
+        form5 = NewCompetenceForm(request.POST, prefix="form5")
+        form6 = NewEquipementForm(request.POST, prefix="form6")
+        form7 = NewDescriptionPersonnelleForm(request.POST, prefix="form7")
+        form8 = NewArmeContactForm(request.POST, prefix="form8")
+        form9 = NewArmeDistanceForm(request.POST, prefix="form9")
+        form10 = NewArmureForm(request.POST, prefix="form10")
+        form12 = NewBourseForm(request.POST, prefix="form12")
+        form14 = NewExperiencePersonnageForm(request.POST, prefix="form14")
+
+        if form1.is_valid():
+            model1 = form1.save(commit=False)
+            model1.joueur = self.request.user
+            model1.save()
+            model2 = form2.save(commit=False)
+            model2.player = Player.objects.get(id=model1.id)
+            model2.save()
+            model3 = form3.save(commit=False)
+            model3.player = Player.objects.get(id=model1.id)
+            model3.save()
+            model4 = form4.save(commit=False)
+            model4.player = Player.objects.get(id=model1.id)
+            model4.save()
+            model5 = form5.save(commit=False)
+            model5.player = Player.objects.get(id=model1.id)
+            model5.save()
+            model6 = form6.save(commit=False)
+            model6.player = Player.objects.get(id=model1.id)
+            model6.save()
+            model7 = form7.save(commit=False)
+            model7.player = Player.objects.get(id=model1.id)
+            model7.save()
+            model8 = form8.save(commit=False)
+            model8.player = Player.objects.get(id=model1.id)
+            model8.save()
+            model9 = form9.save(commit=False)
+            model9.player = Player.objects.get(id=model1.id)
+            model9.save()
+            model10 = form10.save(commit=False)
+            model10.player = Player.objects.get(id=model1.id)
+            model10.save()
+            model12 = form12.save(commit=False)
+            model12.player = Player.objects.get(id=model1.id)
+            model12.save()
+            model14 = form14.save(commit=False)
+            model14.player = Player.objects.get(id=model1.id)
+            model14.save()
+
+            return HttpResponseRedirect(reverse("warhammer:liste_campagne"))
+        else:
+            return render(
+                request,
+                self.template_name,
+                {
+                    "form1": form1,
+                    "form2": form2,
+                    "form3": form3,
+                    "form4": form4,
+                    "form5": form5,
+                    "form6": form6,
+                    "form7": form7,
+                    "form8": form8,
+                    "form9": form9,
+                    "form10": form10,
+                    "form12": form12,
+                    "form14": form14,
+                },
+            )
+
+
+class WarhamArmeContactCreateView(CreateView):
+    """"""
+
+    model = ArmeContact
+    form_class = NewArmeContactForm
+    template_name = "warhamTemplate/player/create/armeContact_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamArmeDistanceCreateView(CreateView):
+    """"""
+
+    model = ArmeDistance
+    form_class = NewArmeDistanceForm
+    template_name = "warhamTemplate/player/create/armeDistance_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamArmureCreateView(CreateView):
+    """"""
+
+    model = Armure
+    form_class = NewArmureForm
+    template_name = "warhamTemplate/player/create/armure_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamCompetenceCreateView(CreateView):
+    """"""
+
+    model = Competence
+    form_class = NewCompetenceForm
+    template_name = "warhamTemplate/player/create/competence_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamEquipementCreateView(CreateView):
+    """"""
+
+    model = Equipement
+    form_class = NewEquipementForm
+    template_name = "warhamTemplate/player/create/equipement_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamBourseCreateView(CreateView):
+    """"""
+
+    model = Bourse
+    form_class = NewBourseForm
+    template_name = "player/create/bourse_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamPlanCarriereCreateView(CreateView):
+    """ """
+
+    model = PlanCarriere
+    form_class = NewPlanCarriereForm
+    template_name = "player/create/planCarriere_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse(
+            "warhammer:details_personnages", kwargs={"pk": self.kwargs["pk"]}
+        )
+
+
+class WarhamMontureCreateView(CreateView):
+    """"""
+
+    model = Monture
+    form_class = NewMontureForm
+    template_name = "monture/create/monture_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+
+        return reverse("warhammer:details_monture", kwargs={"pk": self.kwargs["pk"]})
 
 
 ##################### Reads/Lists views #####################
@@ -392,25 +691,6 @@ class WarhamCaracteristiqueActuelleUpdateView(UpdateView):
     def get_success_url(self):
         carriere_actuelle = CaracteristiqueActuelle.objects.get(id=self.kwargs["pk"])
         player = Player.objects.get(id=carriere_actuelle.player.id)
-        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
-
-
-class WarhamPlanCarriereUpdateView(UpdateView):
-    """"""
-
-    model = PlanCarriere
-    form_class = NewPlanCarriereForm
-    template_name = "warhamTemplate/player/update/planCarriere_update.html"
-
-    def get_context_data(self, **kwargs):
-        context = {}
-        planCarriere_update = PlanCarriere.objects.get(id=self.kwargs["pk"])
-        context["planCarriere_update"] = planCarriere_update
-        return super().get_context_data(**context)
-
-    def get_success_url(self):
-        plan_carriere = PlanCarriere.objects.get(id=self.kwargs["pk"])
-        player = Player.objects.get(id=plan_carriere.player.id)
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 

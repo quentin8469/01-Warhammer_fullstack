@@ -177,3 +177,94 @@ class WarhamPlayerDeleteViews(DeleteView):
     context_object_name = "player"
     template_name = "warhamTemplate/player/delete/player_delete.html"
     success_url = "/warhammer/"
+
+
+class WarhamCompetenceDeleteViews(DeleteView):
+    """"""
+
+    model = Competence
+    context_object_name = "delete_competence"
+    template_name = "warhamTemplate/player/delete/competence_delete.html"
+
+    def get_success_url(self):
+        competence = Competence.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=competence.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamArmeContactDeleteViews(DeleteView):
+    """"""
+
+    model = ArmeContact
+    context_object_name = "delete_arme_contact"
+    template_name = "warhamTemplate/player/delete/armeContact_delete.html"
+
+    def get_success_url(self):
+        arme_contact = ArmeContact.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=arme_contact.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamArmeDistanceDeleteViews(DeleteView):
+    """"""
+
+    model = ArmeDistance
+    context_object_name = "delete_arme_distance"
+    template_name = "warhamTemplate/player/delete/armeDistance_delete.html"
+
+    def get_success_url(self):
+        arme_distance = ArmeDistance.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=arme_distance.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamArmureDeleteViews(DeleteView):
+    """"""
+
+    model = Armure
+    context_object_name = "delete_armure"
+    template_name = "warhamTemplate/player/delete/armure_delete.html"
+
+    def get_success_url(self):
+        armure = Armure.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=armure.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamEquipementDeleteViews(DeleteView):
+    """"""
+
+    model = Equipement
+    context_object_name = "delete_equipement"
+    template_name = "warhamTemplate/player/delete/equipement_delete.html"
+
+    def get_success_url(self):
+        equipement = Equipement.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=equipement.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamBourseDeleteViews(DeleteView):
+    """"""
+
+    model = Bourse
+    context_object_name = "delete_bourse"
+    template_name = "warhamTemplate/player/delete/bourse_delete.html"
+
+    def get_success_url(self):
+        bourse = Bourse.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=bourse.player.id)
+        return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamMontureDeleteViews(DeleteView):
+    """ """
+
+    model = Monture
+    context_object_name = "delete_monture"
+    template_name = "monture/delete/monture_delete.html"
+
+    def get_success_url(self):
+        monture = Monture.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=monture.player.id)
+        return reverse("warhammer:details_monture", kwargs={"pk": player.id})

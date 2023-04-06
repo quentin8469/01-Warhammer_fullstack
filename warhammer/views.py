@@ -93,6 +93,9 @@ class WarhamPlayerCreateView(View):
         # form13 = NewMontureForm(prefix="form13")
         form14 = NewExperiencePersonnageForm(prefix="form14")
         form15 = NewWarhammerCampagneForm(prefix="form15")
+        form16 = NewPointDeBlessureForm(prefix="form16")
+        form17 = NewPointDeDestinForm(prefix="form17")
+        # form18 = NewSortilegeForm(prefix="form18")
         return render(
             request,
             self.template_name,
@@ -112,6 +115,8 @@ class WarhamPlayerCreateView(View):
                 # "form13": form13,
                 "form14": form14,
                 "form15": form15,
+                "form16": form16,
+                "form17": form17,
             },
         )
 
@@ -128,6 +133,8 @@ class WarhamPlayerCreateView(View):
         form10 = NewArmureForm(request.POST, prefix="form10")
         form12 = NewBourseForm(request.POST, prefix="form12")
         form14 = NewExperiencePersonnageForm(request.POST, prefix="form14")
+        form16 = NewPointDeBlessureForm(request.POST, prefix="form16")
+        form17 = NewPointDeDestinForm(request.POST, prefix="form17")
 
         if form1.is_valid():
             model1 = form1.save(commit=False)
@@ -166,6 +173,12 @@ class WarhamPlayerCreateView(View):
             model14 = form14.save(commit=False)
             model14.player = Player.objects.get(id=model1.id)
             model14.save()
+            model16 = form16.save(commit=False)
+            model16.player = Player.objects.get(id=model1.id)
+            model16.save()
+            model17 = form17.save(commit=False)
+            model17.player = Player.objects.get(id=model1.id)
+            model17.save()
 
             return HttpResponseRedirect(reverse("warhammer:liste_campagne"))
         else:
@@ -185,6 +198,8 @@ class WarhamPlayerCreateView(View):
                     "form10": form10,
                     "form12": form12,
                     "form14": form14,
+                    "form16": form16,
+                    "form17": form17,
                 },
             )
 

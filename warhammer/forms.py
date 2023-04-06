@@ -393,22 +393,34 @@ class NewExperiencePersonnageForm(forms.ModelForm):
         fields = ["xp_actuelle", "xp_depense"]
 
 
+# form 16
 class NewPointDeBlessureForm(forms.ModelForm):
     """"""
 
     class Meta:
         model = PointDeBlessure
         fields = ["pdb_max", "pdb_actuel", "nb_blessure"]
+        widgets = {
+            "pdb_max": forms.NumberInput(attrs={"style": "width:10ch"}),
+            "pdb_actuel": forms.NumberInput(attrs={"style": "width:10ch"}),
+            "nb_blessure": forms.NumberInput(attrs={"style": "width:10ch"}),
+        }
 
 
+# form 17
 class NewPointDeDestinForm(forms.ModelForm):
     """"""
 
     class Meta:
         model = PointDeDestin
         fields = ["pdd_actuel", "pdd_depense"]
+        widgets = {
+            "pdd_actuel": forms.NumberInput(attrs={"style": "width:10ch"}),
+            "pdd_depense": forms.NumberInput(attrs={"style": "width:10ch"}),
+        }
 
 
+# from 18
 class NewSortilegeForm(forms.ModelForm):
     """"""
 

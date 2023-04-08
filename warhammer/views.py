@@ -383,7 +383,6 @@ class WarhamMontureCreateView(CreateView):
         return super().get_context_data(**context)
 
     def get_success_url(self):
-
         return reverse("warhammer:details_monture", kwargs={"pk": self.kwargs["pk"]})
 
 
@@ -529,10 +528,59 @@ class WarhamMagieListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = {}
-        magies = Magie.objects.get(player=self.kwargs["pk"])
         personnage = Player.objects.get(id=self.kwargs["pk"])
-        context["magies"] = magies
+        magies = Magie.objects.get(player=self.kwargs["pk"])
+        sortileges = Sortilege.objects.filter(player=self.kwargs["pk"])
+        magies_mineurs = sortileges.filter(type_magie="Magie mineure")
+        magies_batailles = sortileges.filter(type_magie="Magie de bataille")
+        magies_demoniques = sortileges.filter(type_magie="Magie démonique")
+        magies_druidiques = sortileges.filter(type_magie="Magie druidique")
+        magies_elementaires = sortileges.filter(type_magie="Magie elementaire")
+        magies_illusoires = sortileges.filter(type_magie="Magie illusoire")
+        magies_necromantiques = sortileges.filter(type_magie="Magie necromantique")
+        magies_autres = sortileges.filter(type_magie="Magie autre")
         context["personnage"] = personnage
+        context["magies"] = magies
+        context["sortileges"] = sortileges
+        context["magies_mineurs"] = magies_mineurs
+        context["magies_batailles"] = magies_batailles
+        context["magies_demoniques"] = magies_demoniques
+        context["magies_druidiques"] = magies_druidiques
+        context["magies_elementaires"] = magies_elementaires
+        context["magies_illusoires"] = magies_illusoires
+        context["magies_necromantiques"] = magies_necromantiques
+        context["magies_autres"] = magies_autres
+        return super().get_context_data(**context)
+
+
+class WarhamSortilegeListView(ListView):
+    """ """
+
+    model = Sortilege
+    template_name = "warhamTemplate/magie/details/magie_mineure_details.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        personnage = Player.objects.get(id=self.kwargs["pk"])
+        sortileges = Sortilege.objects.filter(player=self.kwargs["pk"])
+        magies_mineurs = sortileges.filter(type_magie="Magie mineure")
+        magies_batailles = sortileges.filter(type_magie="Magie de bataille")
+        magies_demoniques = sortileges.filter(type_magie="Magie démonique")
+        magies_druidiques = sortileges.filter(type_magie="Magie druidique")
+        magies_elementaires = sortileges.filter(type_magie="Magie elementaire")
+        magies_illusoires = sortileges.filter(type_magie="Magie illusoire")
+        magies_necromantiques = sortileges.filter(type_magie="Magie necromantique")
+        magies_autres = sortileges.filter(type_magie="Magie autre")
+        context["personnage"] = personnage
+        context["sortileges"] = sortileges
+        context["magies_mineurs"] = magies_mineurs
+        context["magies_batailles"] = magies_batailles
+        context["magies_demoniques"] = magies_demoniques
+        context["magies_druidiques"] = magies_druidiques
+        context["magies_elementaires"] = magies_elementaires
+        context["magies_illusoires"] = magies_illusoires
+        context["magies_necromantiques"] = magies_necromantiques
+        context["magies_autres"] = magies_autres
         return super().get_context_data(**context)
 
 

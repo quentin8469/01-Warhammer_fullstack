@@ -1,0 +1,42 @@
+{% load static %}
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Mineure&nbsp;<i class="bi bi-plus-square"></i></a></h4>
+<div id="carouselMagieBataille" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <p class="d-block w-100">Sort de magie mineure</p>
+            
+        </div>
+        {% for magie_mineur in magies_mineurs %}
+        <div class="carousel-item">
+            {{ magie_mineur.nom_sortilege }}
+            <div class="card-body bg-dark bg-gradient text-white">
+                <h5 class="card-title">Nom: {{ magie_mineur.nom }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_mineur.niveau_sort }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Point de magie: {{ magie_mineur.point_magie }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_mineur.porte }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_mineur.duree }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_mineur.degats }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Composants: {{ magie_mineur.composants }}</h6>
+                <h6 class="card-title">Description du sort:</h6>
+                <p class="card-text">{{ magie_mineur.description_sort }}</p>
+                <h6 class="card-title">Description de l'incantation:</h6>
+                <p class="card-text">{{ magie_mineur.incantation }}</p>
+                <div class="card-footer text-muted">
+                    <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_mineur.apprentissage }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_mineur.cout_xp }}</h6>
+                    <a href="#" class="btn btn-primary">modifier</a>
+                    <a href="#" class="btn btn-danger">supprimer</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMagieBataille" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselMagieBataille" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>  

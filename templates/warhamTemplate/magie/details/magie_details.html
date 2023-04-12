@@ -44,7 +44,7 @@
         </div>
         <!-- FIN Navigation TABS-->
         <div class="row g-2 ">
-            <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)</h4>
+            <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)&nbsp;<i class="bi bi-plus-square"></i></h4>
             <div class="container text-center text-white">
                 <div class="row bg-dark bg-gradient">
                     <div class="col">
@@ -90,37 +90,56 @@
             </div>
         </div>
         <br>
-        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Sortilège(s)</h4>
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Sortilège(s)&nbsp;<i class="bi bi-plus-square"></i></h4>
         <br>
         <div class="row g-2 ">
+            {% if magies_mineurs|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_mineure_details.html" %}</div>
             </div>
+            {% endif%}
             <br>
+            {% if magies_batailles|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_bataille_details.html" %}</div>
             </div>
+            {% endif%}
+            <br>
+            {% if magies_demoniques|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_demonique_details.html" %}</div>
             </div>
+            {% endif%}
             <br>
+            {% if magies_druidiques|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_druidique_details.html" %}</div>
             </div>
+            {% endif%}
+            <br>
+            {% if magies_autres|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_autre_details.html" %}</div>
             </div>
+            {% endif%}
             <br>
+            {% if magies_illusoires|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_illusoire_details.html" %}</div>
             </div>
+            {% endif%}
+            <br>
+            {% if magies_elementaires|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_elementaire_details.html" %}</div>
             </div>
+            {% endif%}
             <br>
+            {% if magies_necromatiques|length != 0 %}
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_necromantique_details.html" %}</div>
             </div>
+            {% endif%}
         </div>
         
     </div>

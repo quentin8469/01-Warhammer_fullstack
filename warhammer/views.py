@@ -539,6 +539,8 @@ class WarhamMagieListView(ListView):
         magies_illusoires = sortileges.filter(type_magie="Magie illusoire")
         magies_necromantiques = sortileges.filter(type_magie="Magie necromantique")
         magies_autres = sortileges.filter(type_magie="Magie autre")
+        print(magies)
+        print(sortileges)
         context["personnage"] = personnage
         context["magies"] = magies
         context["sortileges"] = sortileges

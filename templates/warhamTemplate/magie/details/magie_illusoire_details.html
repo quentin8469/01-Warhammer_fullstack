@@ -1,0 +1,38 @@
+{% load static %}
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Illusoire&nbsp;<i class="bi bi-plus-square"></i></h4>
+<div id="carouselMagieIllusoire" class="carousel slide">
+    <div class="carousel-inner">
+        {% for magie_illusoire in magies_illusoires %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <div class="card-body bg-dark bg-gradient text-white">
+                <h5 class="card-title">Nom: {{ magie_illusoire.nom_sortilege }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_illusoire.niveau_sort }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Point de magie: {{ magie_illusoire.point_magie }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_illusoire.porte }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_illusoire.duree }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_illusoire.degats }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Composants: {{ magie_illusoire.composants }}</h6>
+                <h6 class="card-title">Description du sort:</h6>
+                <p class="card-text">{{ magie_illusoire.description_sort }}</p>
+                <h6 class="card-title">Description de l'incantation:</h6>
+                <p class="card-text">{{ magie_illusoire.incantation }}</p>
+                <div class="card-footer text-muted">
+                    <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_illusoire.apprentissage }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_illusoire.cout_xp }}</h6>
+                    <a href="#" class="btn btn-primary">modifier</a>
+                    <a href="#" class="btn btn-danger">supprimer</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMagieIllusoire" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselMagieIllusoire" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br>

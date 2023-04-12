@@ -1,15 +1,9 @@
 {% load static %}
-<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Mineure&nbsp;<i class="bi bi-plus-square"></i></a></h4>
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Mineure&nbsp;<i class="bi bi-plus-square"></i></h4>
 <div id="carouselMagieMineure" class="carousel slide">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <p class="d-block w-100">Sort de magie mineure</p>
-            {% for magie_mineur in magies_mineurs %}
-            <p class="d-block w-100">{{ magie_mineur.nom_sortilege }}</p>
-            {% endfor %}
-        </div>
         {% for magie_mineur in magies_mineurs %}
-        <div class="carousel-item">
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
             <div class="card-body bg-dark bg-gradient text-white">
                 <h5 class="card-title">Nom: {{ magie_mineur.nom_sortilege }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_mineur.niveau_sort }}</h6>

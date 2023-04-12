@@ -1,0 +1,38 @@
+{% load static %}
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie "Autre"&nbsp;<i class="bi bi-plus-square"></i></h4>
+<div id="carouselMagieAutre" class="carousel slide">
+    <div class="carousel-inner">
+        {% for magie_autre in magies_autres %}
+        <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+            <div class="card-body bg-dark bg-gradient text-white">
+                <h5 class="card-title">Nom: {{ magie_autre.nom_sortilege }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_autre.niveau_sort }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Point de magie: {{ magie_autre.point_magie }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_autre.porte }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_autre.duree }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_autre.degats }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Composants: {{ magie_autre.composants }}</h6>
+                <h6 class="card-title">Description du sort:</h6>
+                <p class="card-text">{{ magie_autre.description_sort }}</p>
+                <h6 class="card-title">Description de l'incantation:</h6>
+                <p class="card-text">{{ magie_autre.incantation }}</p>
+                <div class="card-footer text-muted">
+                    <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_autre.apprentissage }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_autre.cout_xp }}</h6>
+                    <a href="#" class="btn btn-primary">modifier</a>
+                    <a href="#" class="btn btn-danger">supprimer</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselMagieAutre" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselMagieAutre" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br>

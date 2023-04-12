@@ -43,61 +43,87 @@
             </ul>
         </div>
         <!-- FIN Navigation TABS-->
-        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)</h4>
-        <div class="container text-center text-white">
-            <div class="row bg-dark bg-gradient">
-                <div class="col">
-                    Point(s) Magie MAX: <br>{{ magies.point_magie_personnage }}
+        <div class="row g-2 ">
+            <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)</h4>
+            <div class="container text-center text-white">
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Point(s) Magie MAX: <br>{{ magies.point_magie_personnage }}
+                    </div>
+                    <div class="col">
+                        Point(s) Magie actuel: <br>{{ magies.point_magie_actuel }}
+                    </div>
+                    <div class="col">
+                        Famillier personnage: <br>{{ magies.famillier_personnage }}
+                    </div> 
                 </div>
-                <div class="col">
-                    Point(s) Magie actuel: <br>{{ magies.point_magie_actuel }}
+                <br>
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Nombre de sorts connues: <br>{{ magies.nombre_sort }}
+                    </div>
+                    <div class="col">
+                        Nombre de sorts MAX: <br>{{ magies.nombre_sort }}
+                    </div>
+                    <div class="col">
+                        Recuperation de PM: <br>{{ magies.recuperation_pm }}
+                    </div>
+                    <div class="col">
+                        Armure autorisées: <br>{{ magies.armure_autorisee }}
+                    </div>    
                 </div>
-                <div class="col">
-                    Famillier personnage: <br>{{ magies.famillier_personnage }}
-                </div> 
-            </div>
-            <br>
-            <div class="row bg-dark bg-gradient">
-                <div class="col">
-                    Nombre de sorts connues: <br>{{ magies.nombre_sort }}
-                </div>
-                <div class="col">
-                    Nombre de sorts MAX: <br>{{ magies.nombre_sort }}
-                </div>
-                <div class="col">
-                    Recuperation de PM: <br>{{ magies.recuperation_pm }}
-                </div>
-                <div class="col">
-                    Armure autorisées: <br>{{ magies.armure_autorisee }}
-                </div>    
-            </div>
-            <br>
-            <div class="row bg-dark bg-gradient">
-                <div class="col">
-                    Arme non autorisées: <br>{{ magies.arme_non_autorisee }}
-                </div>
-                <div class="col">
-                    Niveau magique: <br>{{ magies.niveau_magique }}
-                </div>
-                <div class="col">
-                    Niveau de Pouvoir: <br>{{ magies.niveau_pouvoir }}
-                </div>
-                <div class="col">
-                    Note(s): <br>{{ magies.note }}
+                <br>
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Arme non autorisées: <br>{{ magies.arme_non_autorisee }}
+                    </div>
+                    <div class="col">
+                        Niveau magique: <br>{{ magies.niveau_magique }}
+                    </div>
+                    <div class="col">
+                        Niveau de Pouvoir: <br>{{ magies.niveau_pouvoir }}
+                    </div>
+                    <div class="col">
+                        Note(s): <br>{{ magies.note }}
+                    </div>
                 </div>
             </div>
         </div>
         <br>
         <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Sortilège(s)</h4>
         <br>
-        <div class="col-6">
-            <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_mineure_details.html" %}</div>
+        <div class="row g-2 ">
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_mineure_details.html" %}</div>
+            </div>
+            <br>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_bataille_details.html" %}</div>
+            </div>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_demonique_details.html" %}</div>
+            </div>
+            <br>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_druidique_details.html" %}</div>
+            </div>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_autre_details.html" %}</div>
+            </div>
+            <br>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_illusoire_details.html" %}</div>
+            </div>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_elementaire_details.html" %}</div>
+            </div>
+            <br>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_necromantique_details.html" %}</div>
+            </div>
         </div>
-        <br>
-        <div class="col-6">
-            <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_bataille_details.html" %}</div>
-        </div>
+        
     </div>
-   
 </div>
+          
 {% endblock content %}

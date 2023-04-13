@@ -1,29 +1,63 @@
 {% load static %}
-<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Mineure&nbsp;<i class="bi bi-plus-square"></i></h4>
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Mineure</h4>
 <div id="carouselMagieMineure" class="carousel slide">
     <div class="carousel-inner">
-        {% for magie_mineur in magies_mineurs %}
+    {% for magie_mineur in magies_mineurs %}
         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-            <div class="card-body bg-dark bg-gradient text-white">
-                <h5 class="card-title">Nom: {{ magie_mineur.nom_sortilege }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Type de magie: {{ magie_mineur.type_magie }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_mineur.niveau_sort }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Coût Point de magie: {{ magie_mineur.cout_point_magie }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_mineur.porte }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_mineur.duree }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_mineur.degats }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Composants: {{ magie_mineur.composants }}</h6>
-                <h6 class="card-title">Description du sort:</h6>
-                <p class="card-text">{{ magie_mineur.description_sort }}</p>
-                <h6 class="card-title">Description de l'incantation:</h6>
-                <p class="card-text">{{ magie_mineur.incantation }}</p>
-                <div class="card-footer text-muted">
-                    <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_mineur.apprentissage }}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_mineur.cout_xp }}</h6>
-                    <a href="{% url 'warhammer:editter_sortilege' pk=magie_mineur.id %}" class="btn btn-primary">modifier</a>
-                    <a href="#" class="btn btn-danger">supprimer</a>
-                    <br><br>
+            <div class="container bg-dark text-center text-white">
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Nom:<br> {{ magie_mineur.nom_sortilege }}
+                    </div>
                 </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Niveau du sort: <br>{{ magie_mineur.niveau_sort }} 
+                    </div>
+                    <div class="col">
+                        Composants : <br>{{ magie_mineur.composants }}
+                    </div>
+                    <div class="col">
+                        Coût Point de magie: <br> {{ magie_mineur.cout_point_magie }}
+                    </div> 
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Portée: <br>{{ magie_mineur.porte }}
+                    </div>
+                    <div class="col">
+                        Durée: <br>{{ magie_mineur.duree }}
+                    </div>
+                    <div class="col">
+                        Dégats: <br>{{ magie_mineur.degats }}
+                    </div> 
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Description du sort: <br>{{ magie_mineur.description_sort }}
+                    </div>
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Description de l'incantation: <br>{{ magie_mineur.incantation }}
+                    </div>
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Lieu d'apprentissage: <br>{{ magie_mineur.apprentissage }}
+                    </div>
+                    <div class="col">
+                        Cout en XP: <br>{{ magie_mineur.cout_xp }}
+                    </div> 
+                </div>
+                <br>
+                <a href="{% url 'warhammer:editter_sortilege' pk=magie_mineur.id %}" class="btn btn-primary">modifier</a>
+                <a href="#" class="btn btn-danger">supprimer</a>
             </div>
         </div>
         {% endfor %}
@@ -37,4 +71,4 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<br>
+

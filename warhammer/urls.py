@@ -18,6 +18,7 @@ from warhammer.views import (
     WarhamPlanCarriereCreateView,
     WarhamBourseCreateView,
     WarhamMontureCreateView,
+    WarhamMagieCreateView,
     WarhamArmeContactUpdateView,
     WarhamArmeDistanceUpdateView,
     WarhamMontureUpdateView,
@@ -240,5 +241,10 @@ urlpatterns = [
         "magie/<int:pk>/",
         WarhamMagieListView.as_view(),
         name="details_magie",
+    ),
+    path(
+        "<int:pk>/AjouterMagie/",
+        WarhamMagieCreateView.as_view(),
+        name="ajouter_magie",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

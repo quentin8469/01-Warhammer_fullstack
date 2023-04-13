@@ -386,6 +386,26 @@ class WarhamMontureCreateView(CreateView):
         return reverse("warhammer:details_monture", kwargs={"pk": self.kwargs["pk"]})
 
 
+class WarhamMagieCreateView(CreateView):
+    """"""
+
+    model = Magie
+    form_class = NewMagieForm
+    template_name = "warhamTemplate/magie/create/magie_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse("warhammer:details_magie", kwargs={"pk": self.kwargs["pk"]})
+
 ##################### Reads/Lists views #####################
 class WarhamCampaignListView(ListView):
     """Liste toute les campagnes existantes"""
@@ -440,6 +460,7 @@ class WarhamPlayerDetailView(DetailView):
             bourse = Bourse.objects.get(player=self.kwargs["pk"])
             blessures = PointDeBlessure.objects.get(player=self.kwargs["pk"])
             destin = PointDeDestin.objects.get(player=self.kwargs["pk"])
+            magies = Magie.objects.filter(player=self.kwargs["pk"])
             # get dict of all initiative by attaque
             player_campagne = Player.objects.filter(campagne=personnage.campagne.id)
             carac_actu_player = []
@@ -456,6 +477,7 @@ class WarhamPlayerDetailView(DetailView):
             context["experience"] = experience
             context["bourse"] = bourse
             context["blessures"] = blessures
+            context["magies"] = magies
             context["destin"] = destin
             context["description"] = description
             context["competences"] = competences
@@ -539,8 +561,6 @@ class WarhamMagieListView(ListView):
         magies_illusoires = sortileges.filter(type_magie="Magie illusoire")
         magies_necromantiques = sortileges.filter(type_magie="Magie necromantique")
         magies_autres = sortileges.filter(type_magie="Magie autre")
-        print(magies)
-        print(sortileges)
         context["personnage"] = personnage
         context["magies"] = magies
         context["sortileges"] = sortileges

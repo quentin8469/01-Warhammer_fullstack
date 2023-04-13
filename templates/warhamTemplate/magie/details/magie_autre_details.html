@@ -1,29 +1,63 @@
 {% load static %}
-<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie "Autre"&nbsp;<i class="bi bi-plus-square"></i></h4>
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie Autre</h4>
 <div id="carouselMagieAutre" class="carousel slide">
     <div class="carousel-inner">
-        {% for magie_autre in magies_autres %}
+    {% for magie_autre in magies_autres %}
         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
-            <div class="card-body bg-dark bg-gradient text-white">
-                <h5 class="card-title">Nom: {{ magie_autre.nom_sortilege }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Type de magie: {{ magie_autre.type_magie }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_autre.niveau_sort }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Coût Point de magie: {{ magie_autre.cout_point_magie }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_autre.porte }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_autre.duree }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_autre.degats }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Composants: {{ magie_autre.composants }}</h6>
-                <h6 class="card-title">Description du sort:</h6>
-                <p class="card-text">{{ magie_autre.description_sort }}</p>
-                <h6 class="card-title">Description de l'incantation:</h6>
-                <p class="card-text">{{ magie_autre.incantation }}</p>
-                <div class="card-footer text-muted">
-                    <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_autre.apprentissage }}</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_autre.cout_xp }}</h6>
-                    <a href="{% url 'warhammer:editter_sortilege' pk=magie_autre.id %}" class="btn btn-primary">modifier</a>
-                    <a href="#" class="btn btn-danger">supprimer</a>
-                    <br><br>
+            <div class="container bg-dark text-center text-white">
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Nom:<br> {{ magie_autre.nom_sortilege }}
+                    </div>
                 </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Niveau du sort: <br>{{ magie_autre.niveau_sort }} 
+                    </div>
+                    <div class="col">
+                        Composants : <br>{{ magie_autre.composants }}
+                    </div>
+                    <div class="col">
+                        Coût Point de magie: <br> {{ magie_autre.cout_point_magie }}
+                    </div> 
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Portée: <br>{{ magie_autre.porte }}
+                    </div>
+                    <div class="col">
+                        Durée: <br>{{ magie_autre.duree }}
+                    </div>
+                    <div class="col">
+                        Dégats: <br>{{ magie_autre.degats }}
+                    </div> 
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Description du sort: <br>{{ magie_autre.description_sort }}
+                    </div>
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Description de l'incantation: <br>{{ magie_autre.incantation }}
+                    </div>
+                </div>
+                <br>
+                <div class="row bg-gradient">
+                    <div class="col">
+                        Lieu d'apprentissage: <br>{{ magie_autre.apprentissage }}
+                    </div>
+                    <div class="col">
+                        Cout en XP: <br>{{ magie_autre.cout_xp }}
+                    </div> 
+                </div>
+                <br>
+                <a href="{% url 'warhammer:editter_sortilege' pk=magie_autre.id %}" class="btn btn-primary">modifier</a>
+                <a href="#" class="btn btn-danger">supprimer</a>
             </div>
         </div>
         {% endfor %}
@@ -37,4 +71,4 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<br>
+

@@ -5,56 +5,60 @@
 <div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
     <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Sortiléges(s)</h4>
     <div class="container text-center text-white">
-      <form enctype="multipart/form-data" method="POST">
+        <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
-        <div class="row bg-dark bg-gradient bg-opacity-50">
-            <div class="col">
-                Nom: <br>{{form.nom_sortilege }}
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Nom: <br>{{form.nom_sortilege }}
+                </div>
+                <div class="col">
+                    Coût Point de magie: <br>{{form.cout_point_magie }}
+                </div>
+                <div class="col">
+                    Portée: <br>{{form.porte }}
+                </div>
+                <div class="col">
+                    Durée: <br>{{form.duree }}
+                </div>
+                <div class="col">
+                    Dégats: <br>{{form.degats }}
+                </div>
+                <div class="col">
+                    Composants: <br>{{form.composants }}
+                </div>
             </div>
-            <div class="col">
-                Type de magie: <br>{{form.type_magie }}
+            <br>
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Description du sort: <br>{{form.description_sort }}
+                </div>
+                <div class="col">
+                    Description de l'incantation: <br>{{form.incantation }}
+                </div>
+                <div class="col">
+                    Note(s): <br>{{form.note }}
+                </div>
             </div>
-            <div class="col">
-                Niveau: <br>{{form.niveau_sort }}
+            <br>
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Type de magie: <br>{{form.type_magie }}
+                </div>
+                <div class="col">
+                    Niveau: <br>{{form.niveau_sort }}
+                </div>
+                <div class="col">
+                    Cout en XP: <br>{{form.cout_xp }}
+                </div>
+                <div class="col">
+                    Lieu d'apprentissage: <br>{{form.apprentissage }}
+                </div>
             </div>
-            <div class="col">
-                Coût Point de magie: <br>{{form.cout_point_magie }}
-            </div>
-            <div class="col">
-                Portée: <br>{{form.porte }}
-            </div>
-            <div class="col">
-                Durée: <br>{{form.duree }}
-            </div>
-            <div class="col">
-                Dégats: <br>{{form.degats }}
-            </div>
-            <div class="col">
-                Composants: <br>{{form.composants }}
-            </div>
-            <div class="col">
-                Lieu d'apprentissage: <br>{{form.apprentissage }}
-            </div>
-            <div class="col">
-                Cout en XP: <br>{{form.cout_xp }}
-            </div>
-        </div>
-        <br>
-        <div class="row bg-dark bg-gradient bg-opacity-50">
-            <div class="col">
-                Description du sort: <br>{{form.description_sort }}
-            </div>
-            <div class="col">
-                Description de l'incantation: <br>{{form.incantation }}
-            </div>
-            <div class="col">
-                Note(s): <br>{{form.note }}
-            </div>
-        </div>
-          <input class="valid-ticket" type="submit" value="Validez votre sortilége ">
+            <br>
+            <input class="valid-ticket" type="submit" value="Validez votre sortilége ">
         </form>
-      <a class="" href="{% url 'warhammer:details_magie' pk=player.id %}" >Retour page magie</a> 
+        <a class="" href="{% url 'warhammer:details_magie' pk=player.id %}" >Retour page magie</a> 
     </div>
-  </div>
+</div>
 
 {% endblock content %}

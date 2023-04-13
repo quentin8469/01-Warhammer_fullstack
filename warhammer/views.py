@@ -406,6 +406,28 @@ class WarhamMagieCreateView(CreateView):
     def get_success_url(self):
         return reverse("warhammer:details_magie", kwargs={"pk": self.kwargs["pk"]})
 
+
+class WarhamSortilegeCreateView(CreateView):
+    """"""
+
+    model = Sortilege
+    form_class = NewSortilegeForm
+    template_name = "warhamTemplate/magie/create/sortilege_create.html"
+
+    def form_valid(self, form):
+        form.instance.player = Player.objects.get(id=self.kwargs["pk"])
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        player = Player.objects.get(id=self.kwargs["pk"])
+        context["player"] = player
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        return reverse("warhammer:details_magie", kwargs={"pk": self.kwargs["pk"]})
+
+
 ##################### Reads/Lists views #####################
 class WarhamCampaignListView(ListView):
     """Liste toute les campagnes existantes"""
@@ -915,6 +937,44 @@ class WarhamPointBlessureUpdateView(UpdateView):
         blessure = PointDeBlessure.objects.get(id=self.kwargs["pk"])
         player = Player.objects.get(id=blessure.player.id)
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
+
+
+class WarhamMagieUpdateView(UpdateView):
+    """"""
+
+    model = Magie
+    form_class = NewMagieForm
+    template_name = "warhamTemplate/magie/update/magie_update.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        magie_update = Magie.objects.get(id=self.kwargs["pk"])
+        context["magie_update"] = magie_update
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        magie = Magie.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=magie.player.id)
+        return reverse("warhammer:details_magie", kwargs={"pk": player.id})
+
+
+class WarhamSortilegeUpdateView(UpdateView):
+    """"""
+
+    model = Sortilege
+    form_class = NewSortilegeForm
+    template_name = "warhamTemplate/magie/update/sortilege_update.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        sortilege_update = Sortilege.objects.get(id=self.kwargs["pk"])
+        context["sortilege_update"] = sortilege_update
+        return super().get_context_data(**context)
+
+    def get_success_url(self):
+        sortilege = Sortilege.objects.get(id=self.kwargs["pk"])
+        player = Player.objects.get(id=sortilege.player.id)
+        return reverse("warhammer:details_magie", kwargs={"pk": player.id})
 
 
 ##################### Deletes views #####################

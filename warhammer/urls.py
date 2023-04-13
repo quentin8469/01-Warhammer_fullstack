@@ -19,6 +19,7 @@ from warhammer.views import (
     WarhamBourseCreateView,
     WarhamMontureCreateView,
     WarhamMagieCreateView,
+    WarhamSortilegeCreateView,
     WarhamArmeContactUpdateView,
     WarhamArmeDistanceUpdateView,
     WarhamMontureUpdateView,
@@ -32,6 +33,8 @@ from warhammer.views import (
     WarhamCaracteristiqueActuelleUpdateView,
     WarhamCampagneUpdateView,
     WarhamDetailsDescriptionPersonnageUpdateView,
+    WarhamMagieUpdateView,
+    WarhamSortilegeUpdateView,
     WarhamArmeDistanceDeleteViews,
     WarhamCampagneDeleteViews,
     WarhamPlayerDeleteViews,
@@ -246,5 +249,20 @@ urlpatterns = [
         "<int:pk>/AjouterMagie/",
         WarhamMagieCreateView.as_view(),
         name="ajouter_magie",
+    ),
+    path(
+        "Edit_magie/<int:pk>/",
+        WarhamMagieUpdateView.as_view(),
+        name="editter_magie",
+    ),  #### Sortilege url ####
+    path(
+        "<int:pk>/AjouterSort/",
+        WarhamSortilegeCreateView.as_view(),
+        name="ajouter_sortilege",
+    ),
+    path(
+        "Edit_sort/<int:pk>/",
+        WarhamSortilegeUpdateView.as_view(),
+        name="editter_sortilege",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

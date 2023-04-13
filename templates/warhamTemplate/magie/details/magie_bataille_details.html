@@ -6,8 +6,9 @@
         <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
             <div class="card-body bg-dark bg-gradient text-white">
                 <h5 class="card-title">Nom: {{ magie_bataille.nom_sortilege }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Type de magie: {{ magie_bataille.type_magie }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Niveau: {{ magie_bataille.niveau_sort }}</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Point de magie: {{ magie_bataille.point_magie }}</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Coût Point de magie: {{ magie_bataille.cout_point_magie }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Portée: {{ magie_bataille.porte }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Durée: {{ magie_bataille.duree }}</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Dégats: {{ magie_bataille.degats }}</h6>
@@ -19,7 +20,7 @@
                 <div class="card-footer text-muted">
                     <h6 class="card-subtitle mb-2 text-muted">Lieu d'apprentissage: {{ magie_bataille.apprentissage }}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Cout en XP: {{ magie_bataille.cout_xp }}</h6>
-                    <a href="#" class="btn btn-primary">modifier</a>
+                    <a href="{% url 'warhammer:editter_sortilege' pk=magie_bataille.id %}" class="btn btn-primary">modifier</a>
                     <a href="#" class="btn btn-danger">supprimer</a>
                     <br><br>
                 </div>

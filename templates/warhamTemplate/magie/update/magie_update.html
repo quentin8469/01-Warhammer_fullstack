@@ -50,8 +50,7 @@
     </div>
       <input class="valid-ticket" type="submit" value="Validez vos competences magiques ">
       </form>
-    <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page personnage</a> 
+    <a class="" href="{% url 'warhammer:details_magie' pk=magie.player.id %}" >Retour page magie</a> 
   </div>
 </div>
-
 {% endblock content %}

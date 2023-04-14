@@ -7,7 +7,6 @@ from warhammer.views import (
     WarhamMagieListView,
     WarhamMontureListView,
     WarhamPlayerDetailView,
-    WarhamInventaireListView,
     WarhamMontureCreateView,
     WarhamPlayerCreateView,
     WarhamCampaignCreateView,
@@ -266,9 +265,4 @@ urlpatterns = [
         WarhamSortilegeUpdateView.as_view(),
         name="editter_sortilege",
     ),  #### Inventaire url ####
-    path(
-        "inventaire/<int:pk>/",
-        WarhamInventaireListView.as_view(),
-        name="details_inventaire",
-    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -556,15 +556,5 @@ class Monture(models.Model):
         verbose_name_plural = "Montures"
 
 
-# class InventairePersonnage(models.Model):
-#     """"""
-#     nom = models.CharField(max_length=50, blank=False, null=False)
-#     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
-#     class Meta:
-#         verbose_name = "Inventaire"
-#         verbose_name_plural = "Inventaires"
-#     pass
-
-
 class EncombrementPersonnage(models.Model):
     pass

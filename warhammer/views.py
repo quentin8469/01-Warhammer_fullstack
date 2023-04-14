@@ -597,6 +597,19 @@ class WarhamMagieListView(ListView):
         return super().get_context_data(**context)
 
 
+class WarhamInventaireListView(ListView):
+    """ """
+
+    model = Player
+    template_name = "warhamTemplate/inventaire/details/inventaire_details.html"
+
+    def get_context_data(self, **kwargs):
+        context = {}
+        personnage = Player.objects.get(id=self.kwargs["pk"])
+        context["personnage"] = personnage
+        return super().get_context_data(**context)
+
+
 ##################### Updates views #####################
 class WarhamCampagneUpdateView(UpdateView):
     """Class pour l'update d'une campagne warhammer"""

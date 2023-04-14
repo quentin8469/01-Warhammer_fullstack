@@ -69,7 +69,7 @@
                 <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/details_personnels.html" %}</div>
             </div>
             <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_experience.html" %}</div>
+                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_experience.html" %} <br><br>{% include "warhamTemplate/player/details/points_destin.html" %}</div>
             </div>
             <div class="col">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/profil_carac.html" %}</div>
@@ -78,28 +78,20 @@
         <br>
         <div class="row g-2 ">
             <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/mouvement.html" %}</div>
+                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_blessures.html" %} <br>{% include "warhamTemplate/player/details/mouvement.html" %}</div>
             </div>
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/initiative_groupe.html" %}</div>
             </div>
+            
             <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_destin.html" %}</div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_blessures.html" %}</div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/armes.html" %}</div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/armures.html" %}</div>
-            </div>
-            <div class="col-6">
-                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/competences.html" %}</div>
+                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/armes.html" %} {% include "warhamTemplate/player/details/armures.html" %}</div>
             </div>
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/points_armures.html" %}</div>
+            </div>
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/competences.html" %}</div>
             </div>
             <div class="col-6">
                 <div class="p-3 border border-dark">{% include "warhamTemplate/player/details/equipements.html" %}</div>

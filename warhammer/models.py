@@ -97,10 +97,6 @@ class Player(models.Model):
         return f"{self.nom} - {self.joueur}"
 
 
-class EncombrementPersonnage(models.Model):
-    pass
-
-
 class PointDeDestin(models.Model):
     """"""
 
@@ -261,26 +257,6 @@ class CaracteristiqueActuelle(models.Model):
                 new_tuple_list.append((init_calk, self.player.nom))
             return new_tuple_list
         return init_list
-
-    def liste_points_blessures_one(self):
-        """
-        Creation d'une liste de pdv et retourne de 1 à 10
-        return une liste
-        """
-        liste_pdv = []
-        for i in range(self.point_blessure):
-            liste_pdv.append(i + 1)
-        return liste_pdv[:10]
-
-    def liste_points_blessures_two(self):
-        """
-        Creation d'une liste de pdv et retourne de 10 à fin de liste
-        return une liste
-        """
-        liste_pdv = []
-        for i in range(self.point_blessure):
-            liste_pdv.append(i + 1)
-        return liste_pdv[10:]
 
     def deplacement_round(self):
         """
@@ -578,3 +554,17 @@ class Monture(models.Model):
     class Meta:
         verbose_name = "Monture"
         verbose_name_plural = "Montures"
+
+
+# class InventairePersonnage(models.Model):
+#     """"""
+#     nom = models.CharField(max_length=50, blank=False, null=False)
+#     player = models.ForeignKey(to=Player, on_delete=models.CASCADE)
+#     class Meta:
+#         verbose_name = "Inventaire"
+#         verbose_name_plural = "Inventaires"
+#     pass
+
+
+class EncombrementPersonnage(models.Model):
+    pass

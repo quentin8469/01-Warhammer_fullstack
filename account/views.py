@@ -8,9 +8,9 @@ class UserConnectionView(LoginView):
     redirect_authenticated_user = True
 
 
-class UserInscriptionView:
-    pass
-
-
 class UserDeconnectionView(LogoutView):
     next_page = "account:connexion"
+
+
+class UserInscriptionView:
+    pass

@@ -32,21 +32,16 @@
                     <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                 </form>
                 <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Se connecter</button>
-                    <button type="button" class="btn btn-outline-light me-2">S'inscrire</button>
-                    <button type="button" class="btn btn-warning">Se déconnecter</button>
+                    <a class="btn btn-outline-light me-2" aria-current="page" href="{% url 'account:connexion' %}">Se connecter</a>
+                    <a class="btn btn-outline-light me-2" aria-current="page" href="#">S'inscrire</a>
+                    <a class="btn btn-warning" aria-current="page" href="{% url 'account:deconnexion' %}">Se déconnecter</a>
                 </div>
             </div>
         </div>
     </header>
     <br>
     <br>
-    <div class="container-xxl">
-        <div class="container overflow-hidden text-center">
-            <a href="{% url 'warhammer:liste_campagne' %}" class="nav-link px-3 text-danger"><img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt=""></a>
-        </div>
-    </div>
-    
+    {% block content %}{% endblock content %}
     <br>
     <br>
     <br>

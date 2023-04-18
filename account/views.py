@@ -1,15 +1,16 @@
-from django.shortcuts import render
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 
 
-class UserConnectionView:
-    pass
+class UserConnectionView(LoginView):
+    template_name = "registration/login/connexion.html"
+    redirect_authenticated_user = True
 
 
 class UserInscriptionView:
     pass
 
 
-class UserDeconnectionView:
-    pass
+class UserDeconnectionView(LogoutView):
+    next_page = "account:connexion"

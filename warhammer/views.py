@@ -1,4 +1,6 @@
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (
@@ -62,6 +64,7 @@ from warhammer.utils import (
 
 
 ##################### creates views #####################
+@method_decorator(login_required, name="dispatch")
 class WarhamCampaignCreateView(CreateView):
     """Class pour la creation d'une campagne warhammer"""
 
@@ -74,6 +77,7 @@ class WarhamCampaignCreateView(CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlayerCreateView(View):
     template_name = "warhamTemplate/player/create/player_create.html"
 
@@ -204,6 +208,7 @@ class WarhamPlayerCreateView(View):
             )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeContactCreateView(CreateView):
     """"""
 
@@ -227,6 +232,7 @@ class WarhamArmeContactCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeDistanceCreateView(CreateView):
     """"""
 
@@ -250,6 +256,7 @@ class WarhamArmeDistanceCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmureCreateView(CreateView):
     """"""
 
@@ -273,6 +280,7 @@ class WarhamArmureCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamCompetenceCreateView(CreateView):
     """"""
 
@@ -296,6 +304,7 @@ class WarhamCompetenceCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamEquipementCreateView(CreateView):
     """"""
 
@@ -319,6 +328,7 @@ class WarhamEquipementCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamBourseCreateView(CreateView):
     """"""
 
@@ -342,6 +352,7 @@ class WarhamBourseCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlanCarriereCreateView(CreateView):
     """ """
 
@@ -365,6 +376,7 @@ class WarhamPlanCarriereCreateView(CreateView):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMontureCreateView(CreateView):
     """"""
 
@@ -386,6 +398,7 @@ class WarhamMontureCreateView(CreateView):
         return reverse("warhammer:details_monture", kwargs={"pk": self.kwargs["pk"]})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMagieCreateView(CreateView):
     """"""
 
@@ -407,6 +420,7 @@ class WarhamMagieCreateView(CreateView):
         return reverse("warhammer:details_magie", kwargs={"pk": self.kwargs["pk"]})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamSortilegeCreateView(CreateView):
     """"""
 
@@ -429,6 +443,7 @@ class WarhamSortilegeCreateView(CreateView):
 
 
 ##################### Reads/Lists views #####################
+@method_decorator(login_required, name="dispatch")
 class WarhamCampaignListView(ListView):
     """Liste toute les campagnes existantes"""
 
@@ -444,6 +459,7 @@ class WarhamCampaignListView(ListView):
         return super().get_context_data(**context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamCampaignPlayerListView(ListView):
     """Liste des personnages dans une campagne crée"""
 
@@ -457,6 +473,7 @@ class WarhamCampaignPlayerListView(ListView):
         return super().get_context_data(**context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlayerDetailView(DetailView):
     """class pour afficher les détails d'un personnage joueur warhammer"""
 
@@ -549,6 +566,7 @@ class WarhamPlayerDetailView(DetailView):
         return super().get_context_data(**context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMontureListView(ListView):
     """ """
 
@@ -564,6 +582,7 @@ class WarhamMontureListView(ListView):
         return super().get_context_data(**context)
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMagieListView(ListView):
     """ """
 
@@ -598,6 +617,7 @@ class WarhamMagieListView(ListView):
 
 
 ##################### Updates views #####################
+@method_decorator(login_required, name="dispatch")
 class WarhamCampagneUpdateView(UpdateView):
     """Class pour l'update d'une campagne warhammer"""
 
@@ -607,6 +627,7 @@ class WarhamCampagneUpdateView(UpdateView):
     success_url = "/warhammer/"
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlayerCampagneUpdate(UpdateView):
     """"""
 
@@ -619,6 +640,7 @@ class WarhamPlayerCampagneUpdate(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeContactUpdateView(UpdateView):
     """"""
 
@@ -639,6 +661,7 @@ class WarhamArmeContactUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeDistanceUpdateView(UpdateView):
     """"""
 
@@ -659,6 +682,7 @@ class WarhamArmeDistanceUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmureUpdateView(UpdateView):
     """"""
 
@@ -679,6 +703,7 @@ class WarhamArmureUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamCompetenceUpdateView(UpdateView):
     """"""
 
@@ -699,6 +724,7 @@ class WarhamCompetenceUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamEquipementUpdateView(UpdateView):
     """"""
 
@@ -719,6 +745,7 @@ class WarhamEquipementUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamBourseUpdateView(UpdateView):
     """"""
 
@@ -738,6 +765,7 @@ class WarhamBourseUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlanCarriereUpdateView(UpdateView):
     """"""
 
@@ -757,6 +785,7 @@ class WarhamPlanCarriereUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamCaracteristiqueActuelleUpdateView(UpdateView):
     """"""
 
@@ -778,6 +807,7 @@ class WarhamCaracteristiqueActuelleUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamExperienceUpdateView(UpdateView):
     """"""
 
@@ -797,6 +827,7 @@ class WarhamExperienceUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamDetailsDescriptionPersonnageUpdateView(View):
     """"""
 
@@ -851,6 +882,7 @@ class WarhamDetailsDescriptionPersonnageUpdateView(View):
         )
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMontureUpdateView(UpdateView):
     """"""
 
@@ -870,6 +902,7 @@ class WarhamMontureUpdateView(UpdateView):
         return reverse("warhammer:details_monture", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPointDestinUpdateView(UpdateView):
     """"""
 
@@ -889,6 +922,7 @@ class WarhamPointDestinUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPointBlessureUpdateView(UpdateView):
     """"""
 
@@ -908,6 +942,7 @@ class WarhamPointBlessureUpdateView(UpdateView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMagieUpdateView(UpdateView):
     """"""
 
@@ -927,6 +962,7 @@ class WarhamMagieUpdateView(UpdateView):
         return reverse("warhammer:details_magie", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamSortilegeUpdateView(UpdateView):
     """"""
 
@@ -947,6 +983,7 @@ class WarhamSortilegeUpdateView(UpdateView):
 
 
 ##################### Deletes views #####################
+@method_decorator(login_required, name="dispatch")
 class WarhamCampagneDeleteViews(DeleteView):
     """Suppression d'une camapagne warhammer"""
 
@@ -956,6 +993,7 @@ class WarhamCampagneDeleteViews(DeleteView):
     success_url = "/warhammer/"
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamPlayerDeleteViews(DeleteView):
     """Suppression d'un joueur warhammer"""
 
@@ -965,6 +1003,7 @@ class WarhamPlayerDeleteViews(DeleteView):
     success_url = "/warhammer/"
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamCompetenceDeleteViews(DeleteView):
     """"""
 
@@ -978,6 +1017,7 @@ class WarhamCompetenceDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeContactDeleteViews(DeleteView):
     """"""
 
@@ -991,6 +1031,7 @@ class WarhamArmeContactDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmeDistanceDeleteViews(DeleteView):
     """"""
 
@@ -1004,6 +1045,7 @@ class WarhamArmeDistanceDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamArmureDeleteViews(DeleteView):
     """"""
 
@@ -1017,6 +1059,7 @@ class WarhamArmureDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamEquipementDeleteViews(DeleteView):
     """"""
 
@@ -1030,6 +1073,7 @@ class WarhamEquipementDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamBourseDeleteViews(DeleteView):
     """"""
 
@@ -1043,6 +1087,7 @@ class WarhamBourseDeleteViews(DeleteView):
         return reverse("warhammer:details_personnages", kwargs={"pk": player.id})
 
 
+@method_decorator(login_required, name="dispatch")
 class WarhamMontureDeleteViews(DeleteView):
     """ """
 

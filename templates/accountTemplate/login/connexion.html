@@ -1,4 +1,4 @@
-{% extends "registration/base/registration_base.html" %}
+{% extends "accountTemplate/base/registration_base.html" %}
 {% load static %}
 
 {% block content %}
@@ -9,19 +9,16 @@
             <a class="btn btn-primary" href="">S'inscrire</a>
         </div>
         <div class="col">
-            <h2>Connectez-vous</h2>
+            <h1>{{ titre }}</h1>  <!-- Utilisation de la variable 'titre' du contexte pour afficher le titre de la page -->
+            <p>{{ slogan }}</p>  <!-- Utilisation de la variable 'slogan' du contexte pour afficher le slogan de la page -->
             <form  method="post">
             {% csrf_token %}
                 <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur"><br>
                 <input type="password" class="form-control" name="password" placeholder="Mot de passe"><br>
                 <input class="btn btn-primary" type="submit" value="Se connecter">
             </form>
-            <div>
-            {% for message in messages %}
-                <span> {{ message }}</span>
-            {% endfor %}
-            </div>
         </div>
     </div>
 </div>
+
 {% endblock content %}

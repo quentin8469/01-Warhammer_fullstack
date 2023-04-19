@@ -45,6 +45,9 @@
     <br>
     <br>
     <div class="container-xxl">
+        <div>
+            <p>Bonjour et bienvenu {{user.username.upper}}</p>
+        </div>
         <div class="container overflow-hidden text-center">
             <a href="{% url 'warhammer:liste_campagne' %}" class="nav-link px-3 text-danger"><img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt=""></a>
         </div>

@@ -36,7 +36,7 @@
                     <a class="btn btn-warning" aria-current="page" href="{% url 'account:deconnexion' %}">Se déconnecter</a>
                     {% else %}
                     <a class="btn btn-outline-light me-2" aria-current="page" href="{% url 'account:connexion' %}">Se connecter</a>
-                    <a class="btn btn-outline-light me-2" aria-current="page" href="#">S'inscrire</a>
+                    <a class="btn btn-outline-light me-2" aria-current="page" href="{% url 'account:inscription' %}">S'inscrire</a>
                     {% endif %}
                 </div>
             </div>

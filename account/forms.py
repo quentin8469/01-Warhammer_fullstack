@@ -4,17 +4,36 @@ from account.models import CustomUser
 
 
 class NewUserRegistrationForm(UserCreationForm):
-    """create a new user"""
+    """Formulaire d'inscription pour créer un nouvel utilisateur."""
 
     class Meta:
-        """ """
-
         model = CustomUser
         fields = ("username", "email", "password1", "password2")
+        widgets = {
+            "username": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Nom d'utilisateur"}
+            ),
+            "password1": forms.PasswordInput(
+                attrs={"class": "form-control", "placeholder": "Mot de passe"}
+            ),
+            "password2": forms.PasswordInput(
+                attrs={"class": "form-control", "placeholder": "Répéter Mot de passe"}
+            ),
+            "email": forms.EmailInput(
+                attrs={"class": "form-control", "placeholder": "Votre email"}
+            ),
+        }
+        labels = {
+            "username": "Nom d'utilisateur",
+            "email": "Email",
+            "password1": "Mot de passe",
+            "password2": "Répéter Mot de passe",
+        }
 
 
 class UserConnexionForm(AuthenticationForm):
     """ """
+
     class Meta:
         model = CustomUser
         widgets = {

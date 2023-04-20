@@ -4,22 +4,58 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-        <div class="card shadow-lg">
-          <div class="card-body">
-            <h3 class="card-title text-center mb-4">{{ titre }}</h3>
-            <p class="card-title text-center mb-4">{{ slogan }}</p>
-            <form method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <div class="d-grid">
-                  <button type="submit" class="btn btn-primary mt-3">S'inscrire</button><br>
-                  <a href="{% url 'account:connexion' %}" class="btn btn-outline-primary">Retourner accueil</a>
-              </div>
-            </form>
-          </div>
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">{{ titre }}</h3>
+                    <p class="card-title text-center mb-4">{{ slogan }}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary mt-3">S'inscrire</button><br>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Déjà inscrit ? <a href="{% url 'account:connexion' %}">Connectez-vous</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<style>
+    @media screen and (max-width: 576px) {
+        .card {
+            margin-top: 20%;
+            margin-bottom: 20%;
+        }
+    }
+    @media screen and (min-width: 576px) and (max-width: 768px) {
+        .card {
+            margin-top: 10%;
+            margin-bottom: 10%;
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        .card {
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+    }
+    @media screen and (min-width: 992px) and (max-width: 1200px) {
+        .card {
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .card {
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+    }
+</style>
+
 {% endblock content %}

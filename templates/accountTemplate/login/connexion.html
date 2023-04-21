@@ -2,39 +2,21 @@
 {% load static %}
 
 {% block content %}
-{% comment %} <div class="container login mt-5 d-flex justify-content-center">
-    <div class="row justify-content-center">
-        <div class="col">
-            <h2>Inscrivez-vous maintenant</h2>
-            <a class="btn btn-primary" href="{% url 'account:inscription' %}">S'inscrire</a>
-        </div>
-        <div class="col">
-            <h1>{{ titre }}</h1>  <!-- Utilisation de la variable 'titre' du contexte pour afficher le titre de la page -->
-            <p>{{ slogan }}</p>  <!-- Utilisation de la variable 'slogan' du contexte pour afficher le slogan de la page -->
-            <form  method="post">
-            {% csrf_token %}
-                <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur"><br>
-                <input type="password" class="form-control" name="password" placeholder="Mot de passe"><br>
-                <input class="btn btn-primary" type="submit" value="Se connecter">
-            </form>
-        </div>
-    </div>
-</div> {% endcomment %}
-<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
-    <div class=" text-center">
-        <div class="row g-2 ">
-            <div class="col-6">
-                <div class="p-3">
-                    <h2>Inscrivez-vous maintenant</h2>
-                    <a class="btn btn-primary" href="{% url 'account:inscription' %}">S'inscrire</a>
-                </div>
+<div class="container overflow-hidden text-center">
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-dark bg-opacity-75 rounded-3">
+                <h2>Inscrivez-vous maintenant</h2>
+                <a class="btn btn-primary" href="{% url 'account:inscription' %}">S'inscrire</a>
             </div>
-            <div class="col-6">
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border bg-opacity-75 rounded-3">
                 <h1>{{ titre }}</h1>
                 <p>{{ slogan }}</p> 
                 <div class="p-3 ">
                     <form  method="post">
-                    {% csrf_token %}
+                        {% csrf_token %}
                         <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur"><br>
                         <input type="password" class="form-control" name="password" placeholder="Mot de passe"><br>
                         <input class="btn btn-primary" type="submit" value="Se connecter">

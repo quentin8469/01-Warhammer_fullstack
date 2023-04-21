@@ -22,13 +22,11 @@
     <header class="p-3 bg-dark text-white">
         <div class="container-fluid">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-                </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{% url 'home:acceuil' %}" class="nav-link px-2 text-secondary">Acceuil</a></li>
+                    <li><a href="{% url 'account:monCompte' pk=user.id %}" class="nav-link px-2 text-secondary">Mon Profil</a></li>
                 </ul>
-                <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <div class="col-6">
                     <p>Bonjour et bienvenue {{user.username.upper}}</p>
                 </div>
                 <div class="text-end">
@@ -42,13 +40,11 @@
             </div>
         </div>
     </header>
+    <!-- ==== Block content (ROOT) ==== -->
+    
     <br>
     <br>
-    <div class="container-xxl">
-        <div class="container overflow-hidden text-center">
-            <a href="{% url 'warhammer:liste_campagne' %}" class="nav-link px-3 text-danger"><img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt="image"></a>
-        </div>
-    </div>
+    {% block content %}{% endblock content %}
     
     <br>
     <br>

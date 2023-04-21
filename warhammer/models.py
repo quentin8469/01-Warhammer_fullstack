@@ -16,7 +16,7 @@ class Campagne(models.Model):
     nom_de_campagne = models.CharField(max_length=150, null=False)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
-    date_debut = models.DateField(blank=True)
+    date_debut = models.DateField(null=True, blank=True)
     date_end = models.DateField(null=True, blank=True)
     image_campagne = models.ImageField(
         upload_to="image_campagne/", blank=True, null=True

@@ -21,6 +21,8 @@
                     <p class="card-text text-dark">Status: {{ campagne.campagne_etat }}</p>
                     <p class="card-text text-dark">Maitre du jeu: {{ campagne.maitre_du_jeu.username }}</p>
                     <p class="card-text text-dark">Date de création: {{ campagne.date_creation }}</p>
+                    <p class="card-text text-dark">Date de début: {{ campagne.date_debut }}</p>
+                    <p class="card-text text-dark">Date de fin: {{ campagne.date_end }}</p>
                 </div>
                 <div class="btn-group">
                     <a href="{% url 'warhammer:liste_personnages' pk=campagne.id %}" class="btn btn-success" role="button">Joueurs</a>

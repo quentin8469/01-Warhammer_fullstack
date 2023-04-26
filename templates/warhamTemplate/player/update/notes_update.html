@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
-    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Competence(s)</h4>
+    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Note(s)</h4>
     <div class="container text-center text-white">
         <form enctype="multipart/form-data" method="POST">
         {% csrf_token %}
@@ -11,9 +11,9 @@
                     {{ personnage_update.note }}
                 </div>
             </div>
-            <input class="valid-ticket" type="submit" value="Validez votre competence">
+            <input class="valid-ticket" type="submit" value="Validez votre note">
         </form>
-        <a class="" href="{% url 'warhammer:details_notes' pk=personnage_update.id %}" >Retour page personnage</a> 
+        <a class="" href="#" >Retour page personnage</a> 
     </div>
 </div>
 {% endblock content %}

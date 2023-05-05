@@ -1,0 +1,15 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Points de destin</h4>
+
+<div class="container text-center text-white">
+    <div class="row bg-dark bg-gradient">
+        <div class="col">
+            Point(s) actuel(s):&nbsp;<a href="{% url 'warhammer:editter_destin' pk=destin.id %}"><i class="bi bi-plus-square"></i></a> <br> {{ destin.pdd_actuel }}
+        </div>
+        <div class="col">
+            Point(s) dépensées:&nbsp;<a href="{% url 'warhammer:editter_destin' pk=destin.id %}"><i class="bi bi-plus-square"></i></a> <br> {{ destin.pdd_depense }}
+        </div>
+        <div class="col">
+            Point(s) total(s): <br> {{ destin.pdd_total }}
+        </div> 
+    </div>
+</div>

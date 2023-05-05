@@ -1,0 +1,29 @@
+{% extends "accountTemplate/base/registration_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container overflow-hidden text-center">
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-dark bg-opacity-75 rounded-3">
+                <h2>Inscrivez-vous maintenant</h2>
+                <a class="btn btn-primary" href="{% url 'account:inscription' %}">S'inscrire</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border bg-opacity-75 rounded-3">
+                <h1>{{ titre }}</h1>
+                <p>{{ slogan }}</p> 
+                <div class="p-3 ">
+                    <form  method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur"><br>
+                        <input type="password" class="form-control" name="password" placeholder="Mot de passe"><br>
+                        <input class="btn btn-primary" type="submit" value="Se connecter">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

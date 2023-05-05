@@ -1,0 +1,143 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <!-- logo -->
+    <div>
+        <img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt="">
+    </div>
+    <br>
+    <!-- Navigation TABS -->
+    <div class=" text-center">
+        <h1>FEUILLE DE PERSONNAGE</h1>
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_personnages' pk=personnage.id %}">Personnage</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#descriptionModal">
+                        Description
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_magie' pk=personnage.id %}">Magie(s)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:details_monture' pk=personnage.id %}">Monture(s)</a>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Note(s)
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="true" href="{% url 'warhammer:liste_campagne'  %}">Retour</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- FIN Navigation TABS-->
+        <div class="row g-2 ">
+            <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)&nbsp;<a href="{% url 'warhammer:editter_magie' pk=magies.id %}"><i class="bi bi-pencil"></i></a></h4>
+            <div class="container text-center text-white">
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Point(s) Magie MAX: <br>{{ magies.point_magie_personnage }}
+                    </div>
+                    <div class="col">
+                        Point(s) Magie actuel: <br>{{ magies.point_magie_actuel }}
+                    </div>
+                    <div class="col">
+                        Famillier personnage: <br>{{ magies.famillier_personnage }}
+                    </div> 
+                </div>
+                <br>
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Nombre de sorts connues: <br>{{ magies.nombre_sort }}
+                    </div>
+                    <div class="col">
+                        Nombre de sorts MAX: <br>{{ magies.nombre_sort }}
+                    </div>
+                    <div class="col">
+                        Recuperation de PM: <br>{{ magies.recuperation_pm }}
+                    </div>
+                    <div class="col">
+                        Armure autorisées: <br>{{ magies.armure_autorisee }}
+                    </div>    
+                </div>
+                <br>
+                <div class="row bg-dark bg-gradient">
+                    <div class="col">
+                        Arme non autorisées: <br>{{ magies.arme_non_autorisee }}
+                    </div>
+                    <div class="col">
+                        Niveau magique: <br>{{ magies.niveau_magique }}
+                    </div>
+                    <div class="col">
+                        Niveau de Pouvoir: <br>{{ magies.niveau_pouvoir }}
+                    </div>
+                    <div class="col">
+                        Note(s): <br>{{ magies.note }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Sortilège(s)&nbsp;<a href="{% url 'warhammer:ajouter_sortilege' pk=personnage.id %}"><i class="bi bi-plus-square"></i></a></h4>
+        <br>
+        <div class="row g-2 ">
+            {% if magies_mineurs|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_mineure_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_batailles|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_bataille_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_demoniques|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_demonique_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_druidiques|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_druidique_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_autres|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_autre_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_illusoires|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_illusoire_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_elementaires|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_elementaire_details.html" %}</div>
+            </div>
+            {% endif%}
+            <br>
+            {% if magies_necromantiques|length != 0 %}
+            <div class="col-6">
+                <div class="p-3 border border-dark">{% include "warhamTemplate/magie/details/magie_necromantique_details.html" %}</div>
+            </div>
+            {% endif%}
+        </div>
+        
+    </div>
+</div>
+          
+{% endblock content %}

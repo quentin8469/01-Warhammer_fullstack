@@ -1,0 +1,37 @@
+{% load static %}
+
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Bourse</h4>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Type de pièce</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Couronne(s)</td>
+        <td>{{ form12.couronne }} Co</td>
+        <td><img src="{% static "img/bourse/couronne.png" %}" class="img-fluid img-half" alt="Image" width="50%" height="50%"></td>
+      </tr>
+      <tr>
+        <td>Pistole(s)</td>
+        <td>{{ form12.pistole }} Po</td>
+        <td><img src="{% static "img/bourse/pistole.png" %}" class="img-fluid" alt="Image" width="50%" height="50%"></td>
+      </tr>
+      <tr>
+        <td>Sous</td>
+        <td>{{ form12.sous }} S</td>
+        <td><img src="{% static "img/bourse/sous.png" %}" class="img-fluid" alt="Image" width="50%" height="50%"></td>
+      </tr>
+      <tr>
+        <td>Autre(s)</td>
+        <td>{{ form12.autre }}</td>
+        <td><img src="{% static "img/bourse/Coffrecapitaine.png" %}" class="img-fluid" alt="Image" width="50%" height="50%"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

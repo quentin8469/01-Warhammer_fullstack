@@ -1,0 +1,47 @@
+{% load static %}
+<div class=" text-center">
+  <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Bourse&nbsp;<a href="{% url 'warhammer:ajouter_bourse' pk=personnage.id %}"><i class="bi bi-plus-square"></i></a></h4>
+  <div class="table-responsive">
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Quantité</th>
+          <th scope="col">Type de pièce</th>
+          <th scope="col"><small>Modifier</small></th>
+          <th scope="col"><small>Effacer</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Couronne(s)</td>
+          <td>{{ bourse.couronne }} Co</td>
+          <td><img src="{% static "img/bourse/couronne.png" %}" class="img-fluid img-half" alt="Image" width="20%" height="20%"></td>
+          <td><a href="{% url 'warhammer:editter_bourse' pk=bourse.id %}"><i class="bi bi-pencil"></i></a></td>
+          <td><a href="{% url 'warhammer:supprimer_bourse' pk=bourse.id %}"><i class="bi bi-trash3"></i></a></td>
+        </tr>
+        <tr>
+          <td>Pistole(s)</td>
+          <td>{{ bourse.pistole }} Po</td>
+          <td><img src="{% static "img/bourse/pistole.png" %}" class="img-fluid" alt="Image" width="20%" height="20%"></td>
+          <td><a href="{% url 'warhammer:editter_bourse' pk=bourse.id %}"><i class="bi bi-pencil"></i></a></td>
+          <td><a href="{% url 'warhammer:supprimer_bourse' pk=bourse.id %}"><i class="bi bi-trash3"></i></a></td>
+        </tr>
+        <tr>
+          <td>Sous</td>
+          <td>{{ bourse.sous }} S</td>
+          <td><img src="{% static "img/bourse/sous.png" %}" class="img-fluid" alt="Image" width="20%" height="20%"></td>
+          <td><a href="{% url 'warhammer:editter_bourse' pk=bourse.id %}"><i class="bi bi-pencil"></i></a></td>
+          <td><a href="{% url 'warhammer:supprimer_bourse' pk=bourse.id %}"><i class="bi bi-trash3"></i></a></td>
+        </tr>
+        <tr>
+          <td>Autre(s)</td>
+          <td>{{ bourse.autre }}</td>
+          <td><img src="{% static "img/bourse/Coffrecapitaine.png" %}" class="img-fluid" alt="Image" width="20%" height="20%"></td>
+          <td><a href="{% url 'warhammer:editter_bourse' pk=bourse.id %}"><i class="bi bi-pencil"></i></a></td>
+          <td><a href="{% url 'warhammer:supprimer_bourse' pk=bourse.id %}"><i class="bi bi-trash3"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Modification des informations du personnage</h4>
+    <div class="container text-center text-white">
+        <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Nom: <br>{{ player_form.nom }}
+                </div>
+                <div class="col">
+                    Race: <br>{{ player_form.race }}
+                </div>
+                <div class="col">
+                    Sexe: <br>{{ player_form.sexe }}
+                </div>
+                <div class="col">
+                    Vocation: <br>{{ player_form.vocation }}
+                </div>
+                <div class="col">
+                    Alignement: <br>{{ player_form.alignement }}
+                </div>
+                <div class="col">
+                    Age: <br>{{ player_form.age }}
+                </div>
+                <div class="col">
+                    Taille: <br>{{ player_form.taille }}
+                </div>
+                <div class="col">
+                    Poids: <br>{{ player_form.poids }}
+                </div>
+                <div class="col">
+                    Cheveux: <br>{{ player_form.cheveux }}
+                </div>
+                <div class="col">
+                    Yeux: <br>{{ player_form.yeux }}
+                </div>
+                <div class="col">
+                    Points de destin: <br>{{ player_form.point_destin }}
+                </div>
+                <div class="col">
+                    Point de folie: <br>{{ player_form.point_folie }}
+                </div>
+                <div class="col">
+                    Langue: <br>{{ player_form.langue }}
+                </div>     
+            </div>
+            <br>
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Campagne: <br>{{ player_form.campagne }}
+                </div>
+                <div class="col">
+                    lieu de naissance: <br>{{ description_form.lieu_naissance }}
+                </div>    
+            </div>
+            <br>
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Débouchés: <br>{{ player_form.debouches }} 
+                </div>
+                <div class="col">
+                    Note: <br>{{ player_form.note }}
+                </div>
+                <div class="col">
+                    Mort tuer: <br>{{ player_form.mort_tuer }}
+                </div>
+            </div>
+            <br>
+            <div class="row bg-dark bg-gradient bg-opacity-50">
+                <div class="col">
+                    Signe distinctif: <br>{{ description_form.signe_distinctif }} 
+                </div>
+                <div class="col">
+                    membre de la famille: <br>{{ description_form.Membre_famille }}
+                </div>
+                <div class="col">
+                    Description detaillé du personnage:  <br>{{ description_form.description_perso }}
+                </div>
+            </div>
+            <input class="valid-ticket" type="submit" value="Validez vos modifications">
+        </form>
+        <a class="" href="{% url 'warhammer:details_personnages' pk=player_id %}" >Retour page personnage</a> 
+    </div>
+</div>
+{% if player_form.errors %}
+  <div class="alert alert-danger">
+    {% for field, errors in player_form.errors.items %}
+      <strong>{{ field }}</strong> :
+      {% for error in errors %}
+        {{ error }}
+      {% endfor %}
+      <br>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if description_form.errors %}
+  <div class="alert alert-danger">
+    {% for field, errors in description_form.errors.items %}
+      <strong>{{ field }}</strong> :
+      {% for error in errors %}
+        {{ error }}
+      {% endfor %}
+      <br>
+    {% endfor %}
+  </div>
+{% endif %}
+
+
+
+
+
+
+
+{% endblock content %}

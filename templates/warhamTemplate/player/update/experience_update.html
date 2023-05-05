@@ -1,0 +1,24 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+  <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Experience</h4>
+
+  <div class="container text-center text-white">
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div class="row bg-dark bg-gradient bg-opacity-50">
+        <div class="col">
+            Experience actuelle: <br> {{ form.xp_actuelle }}
+        </div>
+        <div class="col">
+            Experience dépensées: <br> {{ form.xp_depense }}
+        </div>
+      </div>
+      <input class="valid-ticket" type="submit" value="Validez votre experience">
+      </form>
+    <a class="" href="{% url 'warhammer:details_personnages' pk=experience_update.player.id %}" >Retour page personnage</a> 
+  </div>
+</div>
+
+{% endblock content %}

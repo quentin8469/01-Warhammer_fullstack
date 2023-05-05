@@ -1,0 +1,27 @@
+{% extends "accountTemplate/base/registration_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">{{ titre }}</h3>
+                    <p class="card-title text-center mb-4">{{ slogan }}</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary mt-3">S'inscrire</button><br>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Déjà inscrit ? <a href="{% url 'account:connexion' %}">Connectez-vous</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

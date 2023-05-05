@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.bg-image {
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.bg-implayer {
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.bg-imglocalisation {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center; 
+    height: 500px;
+
+}
+
+.bg-imgdescription {
+    background-size: cover;
+    background-position: center; 
+    
+    
+}

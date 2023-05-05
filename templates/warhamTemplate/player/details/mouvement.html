@@ -1,0 +1,33 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Mouvement</h4>
+<div class="table-responsive">
+  <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Allure de déplacement</th>
+          <th scope="col">Prudent</th>
+          <th scope="col">Normal</th>
+          <th scope="col">Rapide</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <th scope="row">m/Round</th>
+            {% for cle, valeur in profil_actuel.deplacement_round.items%}
+              <td>{{valeur}}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th scope="row">m/Tour</th>
+            {% for cle, valeur in profil_actuel.deplacement_tour.items%}
+            <td>{{valeur}}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th scope="row">km/h</th>
+            {% for cle, valeur in profil_actuel.deplacement_kmh.items%}
+              <td>{{valeur}}</td>
+            {% endfor %}
+          </tr>
+      </tbody>
+  </table>
+</div>

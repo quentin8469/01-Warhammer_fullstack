@@ -1,0 +1,40 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <div class=" text-center">
+        <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Arme de Distance</h4>
+        <div class="table-responsive">
+            <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Armes de distance &nbsp;<i class="bi bi-shield-plus"></i></th>
+                            <th scope="col">PC</th>
+                            <th scope="col">PL</th>
+                            <th scope="col">PE</th>
+                            <th scope="col">FE</th>
+                            <th scope="col">A/T</th>
+                            <th scope="col">Enc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ form.nom }}</td>
+                            <td>{{ form.porte_courte }}</td>
+                            <td>{{ form.porte_longue }}</td>
+                            <td>{{ form.porte_extreme }}</td>
+                            <td>{{ form.force_effective }}</td>
+                            <td>{{ form.armer_tirer }}</td>
+                            <td>{{ form.encombrement }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="valid-ticket" type="submit" value="Validez votre Arme de Distance">
+            </form>
+            <a class="" href="{% url 'warhammer:details_personnages' pk=armes_distance.player.id %}" >Retour page liste</a>   
+        </div>
+    </div>
+</div>
+{% endblock content %}

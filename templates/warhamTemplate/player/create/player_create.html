@@ -1,0 +1,64 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+    <!-- logo -->
+    <div>
+        <img class="top-image" src="{% static "img/logo/logo_warham_header.png" %}" alt="">
+    </div>
+    <br>
+    <div class=" text-center">
+        <h4> {{user.username.upper}} vous souhaitez créer un personnage pour Warhammer</h4>
+        <!-- Fiche de creation de personnage -->
+        <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+            <div class="row g-2 ">
+                <div class="col-6">       
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/personnage_create.html" %}</div>   
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border border-dark">
+                        {% include "warhamTemplate/player/create/campagne_create.html" %} <br>
+                        {% include "warhamTemplate/player/create/points_xp_create.html" %}
+                    </div>    
+                </div>
+                <div class="col-6">
+                        <div class="p-3 border border-dark">
+                            {% include "warhamTemplate/player/create/details_personnels_create.html" %}
+                        </div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border border-dark">
+                        {% include "warhamTemplate/player/create/armes_create.html" %}<br>
+                        {% include "warhamTemplate/player/create/armures_create.html" %}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/profil_carac_create.html" %}</div>
+                </div>
+            </div>
+            <br>
+            <div class="row g-2 ">
+                <div class="col-6">
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/competences_create.html" %}</div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border border-dark">
+                        {% include "warhamTemplate/player/create/points_blessures_create.html" %} <br> 
+                        {% include "warhamTemplate/player/create/equipements_create.html" %}</div>
+                </div>
+                <div class="col-6">
+                    <div class="p-3 border border-dark">{% include "warhamTemplate/player/create/argents_create.html" %}</div>
+                </div>  
+            </div>
+            <!-- FIN fiche creation de personnage -->
+            <br>
+            <input class="valid-ticket" type="submit" value="Validez votre personnage">
+        </form>
+    </div>
+    <a class="" href="{% url 'warhammer:liste_campagne'  %}" >Retour page liste</a>
+</div>
+{% endif %}
+{% endblock %} 

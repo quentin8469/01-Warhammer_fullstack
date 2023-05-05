@@ -1,0 +1,41 @@
+{% extends "homeTemplate/base/home_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-xxl">
+    <div class="container-xxl text-dark text-center">
+        <h1>Mon Compte</h1>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-3">
+        <div class="col">
+            <div class="card h-100 bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg"%}')">
+                {% if personnage.photo_personnage %}
+                    <img src="{{ user.profile_picture.url }}" class="object-fit-contain border rounded "  alt="Image">
+                {% else %}
+                    <img src="{% static "img/img_default/base_01.png" %}" class="object-fit-contain border rounded" alt="Image">  
+                {% endif %}
+                <div class="card-body">
+                    <p class="p-1 border bg-light">Nom utilisateur: <br>{{ user.username }}</p>
+                    <p class="p-1 border bg-light">Email: <br>{{ user.email}} </p>
+                    <p class="p-1 border bg-light">Nom: <br>{{ user.first_name}} </p>
+                    <p class="p-1 border bg-light">Prénom: <br>{{ user.last_name}} </p>
+                    <p class="p-1 border bg-light">Date de Création: <br>{{ user.profile_creation}} </p>
+                    <p class="p-1 border bg-light">Date de Mise à jour: <br>{{ user.profile_update}} </p>
+                    <p class="p-1 border bg-light">Admin: {{ user.is_staff}} </p>
+                    <p class="p-1 border bg-light">Actif: {{ user.is_active}} </p>
+                    <p class="p-1 border bg-light">Super User: {{ user.is_superuser}} </p>
+                </div>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a href="{% url 'account:editterProfil' pk=user.id %}" class="btn btn-success" role="button">Màj Profil</a>
+                    <a href="{% url 'account:supprimerProfil' pk=user.id %}" class="btn btn-danger" role="button">Effacer</a>
+                    <a href="{% url 'home:acceuil' %}" class="btn btn-info" role="button">Retour</a>
+                    
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Date de création: {{ user.profile_creation}}</small>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Points de blessure</h4>
+
+<div class="container text-center text-white">
+    <div class="row bg-dark bg-gradient">
+        <div class="col">
+            Blessure MAX:&nbsp;<a href="{% url 'warhammer:editter_blessure' pk=blessures.id %}"><i class="bi bi-plus-square"></i></a> <br> {{ blessures.pdb_max }}
+        </div>
+        <div class="col">
+            Blessure actuel:&nbsp;<a href="{% url 'warhammer:editter_blessure' pk=blessures.id %}"><i class="bi bi-plus-square"></i></a> <br> {{ blessures.pdb_actuel }}
+        </div>
+        <div class="col">
+            Nombre de blessures:&nbsp;<a href="{% url 'warhammer:editter_blessure' pk=blessures.id %}"><i class="bi bi-plus-square"></i></a> <br> {{ blessures.nb_blessure }}
+        </div> 
+    </div>
+    <!-- ajouter barre de vie -->
+</div>

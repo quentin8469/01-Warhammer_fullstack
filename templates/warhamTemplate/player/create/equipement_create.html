@@ -1,0 +1,33 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+  <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Equipement(s)</h4>
+
+  <div class="container text-center text-white">
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div class="row bg-dark bg-gradient">
+          <div class="col">
+              Nom: <br>{{ form.nom }}
+          </div>
+          <div class="col">
+              Nombre: <br>{{ form.quantite }}
+          </div>
+          <div class="col">
+              Encombrement: <br>{{ form.encombrement }}
+          </div> 
+      </div>
+      <br>
+      <div class="row bg-dark bg-gradient">
+          <div class="col">
+              Note: <br>{{ form.note }}
+          </div>
+      </div>
+      <input class="valid-ticket" type="submit" value="Validez votre equipement">
+      </form>
+    <a class="" href="{% url 'warhammer:details_personnages' pk=player.id %}" >Retour page personnage</a> 
+  </div>
+</div>
+
+{% endblock content %}

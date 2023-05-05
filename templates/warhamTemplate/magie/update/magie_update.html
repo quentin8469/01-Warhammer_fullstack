@@ -1,0 +1,56 @@
+{% extends "warhamTemplate/base/base_warham.html" %}
+{% load static %}
+{% block content %}
+<div class="container overflow-hidden text-center bg-implayer" style="background-image: url('{% static "img/background/papyrus-wallpaper.jpeg" %}')">
+  <h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Magie(s)</h4>
+
+  <div class="container text-center text-white">
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div class="row bg-dark bg-gradient">
+        <div class="col">
+            Point(s) Magie MAX: <br>{{ form.point_magie_personnage }}
+        </div>
+        <div class="col">
+            Point(s) Magie actuel: <br>{{ form.point_magie_actuel }}
+        </div>
+        <div class="col">
+            Famillier personnage: <br>{{ form.famillier_personnage }}
+        </div> 
+    </div>
+    <br>
+    <div class="row bg-dark bg-gradient">
+        <div class="col">
+            Nombre de sorts connues: <br>{{ form.nombre_sort }}
+        </div>
+        <div class="col">
+            Nombre de sorts MAX: <br>{{ form.nombre_sort }}
+        </div>
+        <div class="col">
+            Recuperation de PM: <br>{{ form.recuperation_pm }}
+        </div>
+        <div class="col">
+            Armure autorisées: <br>{{ form.armure_autorisee }}
+        </div>    
+    </div>
+    <br>
+    <div class="row bg-dark bg-gradient">
+        <div class="col">
+            Arme non autorisées: <br>{{ form.arme_non_autorisee }}
+        </div>
+        <div class="col">
+            Niveau magique: <br>{{ form.niveau_magique }}
+        </div>
+        <div class="col">
+            Niveau de Pouvoir: <br>{{ form.niveau_pouvoir }}
+        </div>
+        <div class="col">
+            Note(s): <br>{{ form.note }}
+        </div>
+    </div>
+      <input class="valid-ticket" type="submit" value="Validez vos competences magiques ">
+      </form>
+    <a class="" href="{% url 'warhammer:details_magie' pk=magie.player.id %}" >Retour page magie</a> 
+  </div>
+</div>
+{% endblock content %}

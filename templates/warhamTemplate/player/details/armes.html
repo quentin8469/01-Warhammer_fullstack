@@ -1,0 +1,62 @@
+<h4 class="p-2 mb-2 bg-dark bg-gradient text-white">Arme(s)</h4>
+<div class="table-responsive">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Armes de contact &nbsp;<a href="{% url 'warhammer:ajouter_armeContact' pk=personnage.id %}"><i class="bi bi-shield-plus"></i></a></th>
+        <th scope="col">I</th>
+        <th scope="col">CC</th>
+        <th scope="col">D</th>
+        <th scope="col">Prd</th>
+        <th scope="col">Enc</th>
+        <th scope="col"><small>Modifier</small></th>
+        <th scope="col"><small>Effacer</small></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for arme_contact in armes_contacts %}
+      <tr>
+        <td><small>{{ arme_contact.nom }}</small></td>
+        <td>{{ arme_contact.initiative }}</td>
+        <td>{{ arme_contact.toucher }}</td>
+        <td>{{ arme_contact.degats }}</td>
+        <td>{{ arme_contact.parade }}</td>
+        <td>{{ arme_contact.encombrement }}</td>
+        <td><a href="{% url 'warhammer:editter_armeContact' pk=arme_contact.id %}"><i class="bi bi-pencil"></i></a></td>
+        <td><a href="{% url 'warhammer:supprimer_armeContact' pk=arme_contact.id %}"><i class="bi bi-trash3"></i></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Armes de distance &nbsp;<a href="{% url 'warhammer:ajouter_armeDistance' pk=personnage.id %}"><i class="bi bi-shield-plus"></i></a></th>
+        <th scope="col">PC</th>
+        <th scope="col">PL</th>
+        <th scope="col">PE</th>
+        <th scope="col">FE</th>
+        <th scope="col">A/T</th>
+        <th scope="col">Enc</th>
+        <th scope="col"><small>Modifier</small></th>
+        <th scope="col"><small>Effacer</small></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for armes_distance in armes_distances %}
+      <tr>
+        <td><small>{{ armes_distance.nom }}</small></td>
+        <td>{{ armes_distance.porte_courte }}</td>
+        <td>{{ armes_distance.porte_longue }}</td>
+        <td>{{ armes_distance.porte_extreme }}</td>
+        <td>{{ armes_distance.force_effective }}</td>
+        <td><small>{{ armes_distance.armer_tirer }}</small></td>
+        <td>{{ armes_distance.encombrement }}</td>
+        <td><a href="{% url 'warhammer:editter_armeDistance' pk=armes_distance.id %}"><i class="bi bi-pencil"></i></a></td>
+        <td><a href="{% url 'warhammer:supprimer_armeDistance' pk=armes_distance.id %}"><i class="bi bi-trash3"></i></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>

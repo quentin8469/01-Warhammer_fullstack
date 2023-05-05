@@ -1,9 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from django.conf import settings
 from account.models import CustomUser
-from django.contrib.auth import authenticate, login
-from django.template import Template, Context
 
 
 class HomeViewTestCase(TestCase):
@@ -18,9 +15,7 @@ class HomeViewTestCase(TestCase):
         self.client.login(username="Jeannot Jojo", password="motdepasse")
 
     def test_homeview_with_authenticated_user(self):
-        self.client.force_login(
-            CustomUser.objects.create_user(username="testuser", password="testpass")
-        )
+        self.client.force_login(self.user)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "homeTemplate/liste/liste_jdr.html")

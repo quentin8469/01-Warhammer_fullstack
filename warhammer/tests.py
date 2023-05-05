@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import reverse
+from django.core.files.uploadedfile import SimpleUploadedFile
 from account.models import CustomUser
 from warhammer.models import Campagne, Player
 

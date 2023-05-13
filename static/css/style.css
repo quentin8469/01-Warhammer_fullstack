@@ -26,3 +26,24 @@
     
     
 }
+.carousel-wrapper {
+    position: relative;
+}
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+}

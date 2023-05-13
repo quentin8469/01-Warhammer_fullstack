@@ -25,8 +25,8 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{% url 'home:acceuil' %}" class="nav-link px-2 text-secondary">Accueil</a></li>
                     <li><a href="{% url 'account:monCompte' pk=user.id %}" class="nav-link px-2 text-secondary">Mon Profil</a></li>
-                    <li><a href="{% url 'warhammer:creation_personnage' %}" class="nav-link px-2 text-white">Création de personnage</a></li>
-                    <li><a href="{% url 'warhammer:creation_campagne' %}" class="nav-link px-2 text-white">Création de campagne</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Création de personnage</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Création de campagne</a></li>
                 </ul>
                 <div class="text-end">
                     {% if user.is_authenticated %}

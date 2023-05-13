@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "account",
     "home",
     "warhammer",
+    "cthulhu",
     # Other App,
 ]
 

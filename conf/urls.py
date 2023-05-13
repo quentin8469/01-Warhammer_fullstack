@@ -23,5 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("home.urls")),
     path("warhammer/", include("warhammer.urls")),
+    path("cthulhu/", include("cthulhu.urls")),
     path("account/", include("account.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

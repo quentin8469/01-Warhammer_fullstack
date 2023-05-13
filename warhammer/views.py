@@ -579,6 +579,11 @@ class WarhamMontureListView(ListView):
         personnage = Player.objects.get(id=self.kwargs["pk"])
         context["montures"] = montures
         context["personnage"] = personnage
+        try:
+            magies = Magie.objects.filter(player=self.kwargs["pk"])
+            context["magies"] = magies
+        except Magie.DoesNotExist:
+            context["magies"] = []
         return super().get_context_data(**context)
 
 

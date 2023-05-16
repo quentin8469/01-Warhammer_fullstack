@@ -149,7 +149,7 @@ class Caracteristique(models.Model):
         verbose_name_plural = "Caracteristiques"
 
     def __str__(self):
-        return f"{self.nom} - {self.joueur}"
+        return f"{self.investigateur.nom} - {self.investigateur.joueur.username}"
 
     def prestance(self):
         prestance = self.apparence * 5
@@ -212,3 +212,70 @@ class Caracteristique(models.Model):
             return 2
         if 33 <= impact <= 40:
             return 4
+
+    def idee(self):
+        idee = self.intelligence * 5
+        return idee
+
+    def chance(self):
+        chance = self.pouvoir * 5
+        return chance
+
+
+class CompetenceInvestigateur(models.Model):
+    """"""
+
+    nom = models.CharField(max_length=50, null=False)
+    niveau_naturel = models.PositiveIntegerField(
+        default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
+    )
+    point_ajouter = models.PositiveIntegerField(
+        default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
+    )
+    tirage_xp = models.BooleanField(default=False)
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Competence Investigateur"
+        verbose_name_plural = "Competences Investigateurs"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"
+
+    def total_pourcentage_compmetence(self):
+        if self.point_ajouter > 0:
+            total = self.niveau_naturel + self.point_ajouter
+            return total
+        return self.niveau_naturel
+
+
+class ArmeFeu(models.Model):
+    """sumary_line
+
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+
+    nom = models.CharField(max_length=50, null=False)
+    dommage = models.CharField(max_length=5, null=False)
+    portee = models.CharField(max_length=10, null=False)
+    # panne =
+    # empal =
+    tirs = models.CharField(
+        max_length=50, null=False, default="nombre de tir par round à definir"
+    )
+    pdv = models.PositiveIntegerField(
+        default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
+    )
+    munition = models.PositiveIntegerField(
+        default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
+    )
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Arme à Feu"
+        verbose_name_plural = "Armes à Feu"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"

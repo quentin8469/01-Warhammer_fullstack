@@ -19,7 +19,8 @@ class CampagneCthulhu(models.Model):
         ("En pause", "En pause"),
         ("Terminée", "Terminée"),
     }
-
+    CHOICE_STYLE = {}
+    style_de_jeu = models.CharField(max_length=20, choices=CHOICE_STYLE)
     nom_de_campagne = models.CharField(max_length=150, null=False)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
@@ -95,6 +96,18 @@ class Investigateur(models.Model):
         ("Militaire", "Militaire"),
         ("Universitaire", "Universitaire"),
     }
+    CHOICE_PERSONNALITE = {
+        ("Anxieux", "Anxieux"),
+        ("Flegmatique", "Flegmatique"),
+        ("Jovial", "Jovial"),
+        ("Méfiant", "Méfiant"),
+        ("Narcissique", "Narcissique"),
+        ("Obsessionnel", "Obsessionnel"),
+        ("Sanguin", "Sanguin"),
+        ("Taciturne", "Taciturne"),
+        ("Tatillon", "Tatillon"),
+        ("Timide", "Timide"),
+    }
 
     nom = models.CharField(max_length=50, null=False)
     prenom = models.CharField(max_length=50, null=False)
@@ -103,7 +116,7 @@ class Investigateur(models.Model):
     sexe = models.CharField(max_length=50, choices=CHOICE_SEXE)
     profession = models.CharField(max_length=50, null=False)
     nationalite = models.CharField(max_length=50, null=False)
-    personnalite = models.CharField(max_length=50, null=False)
+    personnalite = models.CharField(max_length=50, choices=CHOICE_PERSONNALITE)
     photo_investigateur = models.ImageField(
         upload_to="photo_perso/",
         blank=True,
@@ -112,13 +125,14 @@ class Investigateur(models.Model):
             FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png"]),
         ],
     )
+    description = models.TextField(blank=True, null=True)
+    etat_investigateur = models.CharField(max_length=20, choices=ETAT_INVESTIGATEUR)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
     joueur = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
     campagne_cthulhu = models.ForeignKey(
         to=CampagneCthulhu, on_delete=models.SET_NULL, null=True, blank=True
     )
-    etat_investigateur = models.CharField(max_length=20, choices=ETAT_INVESTIGATEUR)
 
     class Meta:
         verbose_name = "Investigateur"
@@ -301,6 +315,7 @@ class CompetenceInvestigateur(models.Model):
     }
     nom = models.CharField(max_length=50, null=False)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICE)
+    description = models.TextField(blank=True, null=True)
     niveau_naturel = models.PositiveIntegerField(
         default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
     )
@@ -308,6 +323,7 @@ class CompetenceInvestigateur(models.Model):
         default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
     )
     tirage_xp = models.BooleanField(default=False)
+    is_occupation = models.BooleanField(default=False)
     investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
 
     class Meta:
@@ -324,7 +340,7 @@ class CompetenceInvestigateur(models.Model):
         return self.niveau_naturel
 
 
-class ArmeFeu(models.Model):
+class Armes(models.Model):
     """sumary_line
 
     Keyword arguments:
@@ -332,16 +348,26 @@ class ArmeFeu(models.Model):
     Return: return_description
     """
 
+    CHOICE_TYPE = {
+        ("Armes improvisées", "Armes improvisées"),
+        ("Armes à Feu", "Arme à Feu"),
+        ("Armes blanches", "Armes blanches"),
+        ("Explosifs", "Explosifs"),
+    }
+
+    CHOICE_PORTEE = {
+        ("Contact", "Contact"),
+        ("Courte", "Courte"),
+        ("Proche", "Proche"),
+        ("Longue", "Longue"),
+    }
+    type = models.CharField(max_length=20, choices=CHOICE_TYPE)
     nom = models.CharField(max_length=50, null=False)
+    modificateur = models.CharField(max_length=50, null=False)
     dommage = models.CharField(max_length=5, null=False)
-    portee = models.CharField(max_length=10, null=False)
-    # panne =
-    # empal =
-    tirs = models.CharField(
+    portee = models.CharField(max_length=20, choices=CHOICE_TYPE)
+    cadence = models.CharField(
         max_length=50, null=False, default="nombre de tir par round à definir"
-    )
-    pdv = models.PositiveIntegerField(
-        default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
     )
     munition = models.PositiveIntegerField(
         default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]

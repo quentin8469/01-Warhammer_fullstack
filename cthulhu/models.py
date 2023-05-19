@@ -1,6 +1,10 @@
 import math
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import (
+    MinValueValidator,
+    MaxValueValidator,
+    FileExtensionValidator,
+)
 from account.models import CustomUser
 
 
@@ -20,7 +24,12 @@ class CampagneCthulhu(models.Model):
     date_debut = models.DateField(null=True, blank=True)
     date_end = models.DateField(null=True, blank=True)
     image_campagne = models.ImageField(
-        upload_to="image_campagne/", blank=True, null=True
+        upload_to="image_campagne/",
+        blank=True,
+        null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png"]),
+        ],
     )
     campagne_etat = models.CharField(max_length=20, choices=ETAT_CAMPAGNE)
     gardien = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
@@ -69,6 +78,14 @@ class Investigateur(models.Model):
     profession = models.CharField(max_length=50, null=False)
     nationalite = models.CharField(max_length=50, null=False)
     personnalite = models.CharField(max_length=50, null=False)
+    photo_investigateur = models.ImageField(
+        upload_to="photo_perso/",
+        blank=True,
+        null=True,
+        validators=[
+            FileExtensionValidator(allowed_extensions=["jpg", "jpeg", "png"]),
+        ],
+    )
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
     joueur = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
@@ -225,7 +242,15 @@ class Caracteristique(models.Model):
 class CompetenceInvestigateur(models.Model):
     """"""
 
+    CATEGORY_CHOICE = {
+        ("Connaissance", "Connaissance"),
+        ("Savoir-faire", "Savoir-faire"),
+        ("Sensorielle", "Sensorielle"),
+        ("Influence", "Influence"),
+        ("Action", "Action"),
+    }
     nom = models.CharField(max_length=50, null=False)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICE)
     niveau_naturel = models.PositiveIntegerField(
         default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
     )

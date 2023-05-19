@@ -19,7 +19,11 @@ class CampagneCthulhu(models.Model):
         ("En pause", "En pause"),
         ("Terminée", "Terminée"),
     }
-    CHOICE_STYLE = {}
+    CHOICE_STYLE = {
+        ("Horreur Lovecraftienne", "Horreur Lovecraftienne"),
+        ("Investigation Occulte", "Investigation Occulte"),
+        ("Aventure Pulp", "Aventure Pulp"),
+    }
     style_de_jeu = models.CharField(max_length=20, choices=CHOICE_STYLE)
     nom_de_campagne = models.CharField(max_length=150, null=False)
     date_creation = models.DateTimeField(auto_now_add=True)
@@ -40,6 +44,7 @@ class CampagneCthulhu(models.Model):
     class Meta:
         verbose_name = "Campagne"
         verbose_name_plural = "Campagnes"
+        ordering = ["campagne_etat"]
 
     def __str__(self):
         return f"{self.nom_de_campagne} - {self.gardien}"
@@ -108,6 +113,13 @@ class Investigateur(models.Model):
         ("Tatillon", "Tatillon"),
         ("Timide", "Timide"),
     }
+    CHOICE_NIVEAU_VIE = {
+        ("Indigent (5%)", "Indigent (5%)"),
+        ("Pauvre (25%)", "Pauvre (25%)"),
+        ("Classe moyenne (50%)", "Classe moyenne (50%)"),
+        ("Aisée (75%)", "Aisée (75%)"),
+        ("Riche (95%)", "Riche (95%)"),
+    }
 
     nom = models.CharField(max_length=50, null=False)
     prenom = models.CharField(max_length=50, null=False)
@@ -126,6 +138,10 @@ class Investigateur(models.Model):
         ],
     )
     description = models.TextField(blank=True, null=True)
+    cercle_proche = models.CharField(max_length=50, null=False)
+    cercle_eloigner = models.CharField(max_length=50, null=False)
+    cercle_opposer = models.CharField(max_length=50, null=False)
+    cercle_ennemis = models.CharField(max_length=50, null=False)
     etat_investigateur = models.CharField(max_length=20, choices=ETAT_INVESTIGATEUR)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
@@ -293,14 +309,6 @@ class Caracteristique(models.Model):
             return 2
         if 33 <= impact <= 40:
             return 4
-
-    def idee(self):
-        idee = self.intelligence * 5
-        return idee
-
-    def chance(self):
-        chance = self.pouvoir * 5
-        return chance
 
 
 class CompetenceInvestigateur(models.Model):

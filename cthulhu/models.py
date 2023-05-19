@@ -24,7 +24,7 @@ class CampagneCthulhu(models.Model):
         ("Investigation Occulte", "Investigation Occulte"),
         ("Aventure Pulp", "Aventure Pulp"),
     }
-    style_de_jeu = models.CharField(max_length=20, choices=CHOICE_STYLE)
+    style_de_jeu = models.CharField(max_length=50, choices=CHOICE_STYLE)
     nom_de_campagne = models.CharField(max_length=150, null=False)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
@@ -49,29 +49,29 @@ class CampagneCthulhu(models.Model):
     def __str__(self):
         return f"{self.nom_de_campagne} - {self.gardien}"
 
-    @classmethod
-    def validate_image_size_and_file_size(cls, image):
-        max_width = 1200
-        max_height = 800
-        max_file_size = 2 * 1024 * 1024  # 2 Mo
+    # @classmethod
+    # def validate_image_size_and_file_size(cls, image_campagne):
+    #     max_width = 1200
+    #     max_height = 800
+    #     max_file_size = 2 * 1024 * 1024  # 2 Mo
 
-        # Vérification de la taille de l'image
-        img = Image.open(image)
-        width, height = img.size
-        if width > max_width or height > max_height:
-            raise ValidationError(
-                "La taille de l'image ne doit pas dépasser {} pixels de largeur et {} pixels de hauteur.".format(
-                    max_width, max_height
-                )
-            )
+    #     # Vérification de la taille de l'image
+    #     image_campagne = Image.open(image_campagne)
+    #     width, height = image_campagne.size
+    #     if width > max_width or height > max_height:
+    #         raise ValidationError(
+    #             "La taille de l'image ne doit pas dépasser {} pixels de largeur et {} pixels de hauteur.".format(
+    #                 max_width, max_height
+    #             )
+    #         )
 
-        # Vérification de la taille du fichier
-        if image.size > max_file_size:
-            raise ValidationError("La taille de l'image ne doit pas dépasser 2 Mo.")
+    #     # Vérification de la taille du fichier
+    #     if image_campagne.size > max_file_size:
+    #         raise ValidationError("La taille de l'image ne doit pas dépasser 2 Mo.")
 
-    def clean(self):
-        super().clean()
-        self.validate_image_size_and_file_size(self.image)
+    # def clean(self):
+    #     super().clean()
+    #     self.validate_image_size_and_file_size(self.image_campagne)
 
 
 class Investigateur(models.Model):
@@ -157,29 +157,29 @@ class Investigateur(models.Model):
     def __str__(self):
         return f"{self.nom} - {self.joueur}"
 
-    @classmethod
-    def validate_image_size_and_file_size(cls, image):
-        max_width = 1200
-        max_height = 800
-        max_file_size = 2 * 1024 * 1024  # 2 Mo
+    # @classmethod
+    # def validate_image_size_and_file_size(cls, image):
+    #     max_width = 1200
+    #     max_height = 800
+    #     max_file_size = 2 * 1024 * 1024  # 2 Mo
 
-        # Vérification de la taille de l'image
-        img = Image.open(image)
-        width, height = img.size
-        if width > max_width or height > max_height:
-            raise ValidationError(
-                "La taille de l'image ne doit pas dépasser {} pixels de largeur et {} pixels de hauteur.".format(
-                    max_width, max_height
-                )
-            )
+    #     # Vérification de la taille de l'image
+    #     img = Image.open(image)
+    #     width, height = img.size
+    #     if width > max_width or height > max_height:
+    #         raise ValidationError(
+    #             "La taille de l'image ne doit pas dépasser {} pixels de largeur et {} pixels de hauteur.".format(
+    #                 max_width, max_height
+    #             )
+    #         )
 
-        # Vérification de la taille du fichier
-        if image.size > max_file_size:
-            raise ValidationError("La taille de l'image ne doit pas dépasser 2 Mo.")
+    #     # Vérification de la taille du fichier
+    #     if image.size > max_file_size:
+    #         raise ValidationError("La taille de l'image ne doit pas dépasser 2 Mo.")
 
-    def clean(self):
-        super().clean()
-        self.validate_image_size_and_file_size(self.image)
+    # def clean(self):
+    #     super().clean()
+    #     self.validate_image_size_and_file_size(self.image)
 
 
 class Caracteristique(models.Model):
@@ -341,7 +341,7 @@ class CompetenceInvestigateur(models.Model):
     def __str__(self):
         return f"{self.nom} - {self.investigateur.joueur.username}"
 
-    def total_pourcentage_compmetence(self):
+    def total_pourcentage_competence(self):
         if self.point_ajouter > 0:
             total = self.niveau_naturel + self.point_ajouter
             return total
@@ -373,7 +373,7 @@ class Armes(models.Model):
     nom = models.CharField(max_length=50, null=False)
     modificateur = models.CharField(max_length=50, null=False)
     dommage = models.CharField(max_length=5, null=False)
-    portee = models.CharField(max_length=20, choices=CHOICE_TYPE)
+    portee = models.CharField(max_length=20, choices=CHOICE_PORTEE)
     cadence = models.CharField(
         max_length=50, null=False, default="nombre de tir par round à definir"
     )

@@ -2,5 +2,86 @@
 {% load static %}
 
 {% block content %}
-<h1>FEUILLE DE PERSONNAGE</h1>
+<div class="container-xxl bg-white border text-center">
+    <h1>FEUILLE DE PERSONNAGE</h1>
+    <!-- Content here -->
+    <div class="row border">
+        <div class="col border">
+            <p>Style de jeu: {{ investigateur.campagne_cthulhu.style_de_jeu }} </p>
+        </div>
+        <div class="col border">
+            <p>Gardien: {{ investigateur.campagne_cthulhu.gardien }} </p>
+        </div>
+        <div class="col border">
+            <p>Campagne: {{ investigateur.campagne_cthulhu.nom_de_campagne }} </p>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col-sm-3 border">
+            {% if investigateur.photo_investigateur %}
+                <img src="{{ investigateur.photo_investigateur.url }}" class="img-fluid"  alt="Image">
+            {% else %}
+                <img src="{% static "img/img_default/cthulhu_default_investigateur.jpg" %}" class="img-fluid" alt="Image">  
+            {% endif %}
+        </div>
+        <div class="col-sm-9 border">
+          <div class="row border">
+            <div class="col-8 col-sm-6 border">
+              <p>Caractéristiques & Attributs:</p>
+              <div class="row">
+                <div class="col-8 col-sm-6">
+                  <p>APP: {{ caracteristiques.apparence }} </p>
+                  <p>CON: {{ caracteristiques.constitution }} </p>
+                  <p>DEX: {{ caracteristiques.dexterite }} </p>
+                  <p>FOR: {{ caracteristiques.force }} </p>
+                  <p>TAI: {{ caracteristiques.taille }} </p>
+                  <p>EDU: {{ caracteristiques.education }} </p>
+                  <p>INT: {{ caracteristiques.intelligence }} </p>
+                  <p>POU: {{ caracteristiques.pouvoir }} </p>
+                </div>
+                <div class="col-4 col-sm-6">
+                    <p>Prestance: {{ caracteristiques.prestance }} %</p>
+                    <p>Endurance: {{ caracteristiques.endurance }} %</p>
+                    <p>Agilité: {{ caracteristiques.agilte }} %</p>
+                    <p>Puissance: {{ caracteristiques.puissance }} %</p>
+                    <p>Corpulence: {{ caracteristiques.corpulence }} %</p>
+                    <p>Connaissance: {{ caracteristiques.connaissance }} %</p>
+                    <p>Intuition: {{ caracteristiques.intuition }} %</p>
+                    <p>Volonté: {{ caracteristiques.volonte }} %</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4 col-sm-6 border">
+              <p>Etat civil</p>
+              <div class="row">
+                <div class="col-8 col-sm-6">
+                    <p>Nom: {{ investigateur.nom }} </p>
+                    <p>Occupation: {{ investigateur.occupation }} </p>
+                    <p>Profession: {{ investigateur.profession }} </p>
+                    <p>Personnalité: {{ investigateur.personnalite }} </p> 
+                    <p>Niveau de vie: ............% </p> 
+                </div>
+                <div class="col-4 col-sm-6">
+                    <p>Prénom: {{ investigateur.prenom }} </p>
+                    <p>Age: {{ investigateur.age }} </p>
+                    <p>Sexe: {{ investigateur.sexe}} </p>
+                    <p>Nationalité: {{ investigateur.nationalite }} </p>
+                </div>
+              </div>
+              <p>Cercles d'influence</p>
+              <div class="row">
+                <div class="col-8 col-sm-6">
+                    <p>Proche: {{ investigateur.cercle_proche }} </p>
+                    <p>Eloignés: {{ investigateur.cercle_eloigner }} </p> 
+                </div>
+                <div class="col-4 col-sm-6">
+                    <p>Opposés: {{ investigateur.cercle_opposer }} </p>
+                    <p>Ennemi: {{ investigateur.cercle_ennemis }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
 {% endblock content %}

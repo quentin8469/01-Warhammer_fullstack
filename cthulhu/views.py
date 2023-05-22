@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
-from cthulhu.models import CampagneCthulhu, Investigateur
+from cthulhu.models import CampagneCthulhu, Investigateur, Caracteristique
 
 
 # Create your views here.
@@ -39,8 +39,10 @@ class CthulhuInvestigateurDetailView(DetailView):
         context = {}
         try:
             investigateur = Investigateur.objects.get(id=self.kwargs["pk"])
+            caracteristiques = Caracteristique.objects.get(id=investigateur.pk)
             # details player view contexts
             context["investigateur"] = investigateur
+            context["caracteristiques"] = caracteristiques
         except:
             investigateur = Investigateur.objects.get(id=self.kwargs["pk"])
             # details player view contexts

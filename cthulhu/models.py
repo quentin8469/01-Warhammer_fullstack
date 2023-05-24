@@ -138,11 +138,16 @@ class Investigateur(models.Model):
         ],
     )
     description = models.TextField(blank=True, null=True)
+    histoire_perso = models.TextField(blank=True, null=True)
+    note = models.TextField(blank=True, null=True)
+    blessure = models.TextField(blank=True, null=True)
+    protection = models.TextField(blank=True, null=True)
     cercle_proche = models.CharField(max_length=50, null=False)
     cercle_eloigner = models.CharField(max_length=50, null=False)
     cercle_opposer = models.CharField(max_length=50, null=False)
     cercle_ennemis = models.CharField(max_length=50, null=False)
     etat_investigateur = models.CharField(max_length=20, choices=ETAT_INVESTIGATEUR)
+    niveau_vie = models.CharField(max_length=20, choices=CHOICE_NIVEAU_VIE)
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
     joueur = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
@@ -380,11 +385,97 @@ class Armes(models.Model):
     munition = models.PositiveIntegerField(
         default=00, validators=[MinValueValidator(00), MaxValueValidator(120)]
     )
+    description = models.TextField(blank=True, null=True)
     investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Arme à Feu"
         verbose_name_plural = "Armes à Feu"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"
+
+
+class Sequelle_Psycologique(models.Model):
+    """sumary_line
+
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+
+    nom = models.CharField(max_length=50, null=False)
+    niveau = models.CharField(max_length=50, null=False)
+    effet = models.CharField(max_length=50, null=False)
+    description = models.TextField(blank=True, null=True)
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Sequelle Psycologique"
+        verbose_name_plural = "Sequelles Psycologiques"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"
+
+
+class Sequelle_Physique(models.Model):
+    """sumary_line
+
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+
+    nom = models.CharField(max_length=50, null=False)
+    description = models.TextField(blank=True, null=True)
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Sequelle Physique"
+        verbose_name_plural = "Sequelles Physiques"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"
+
+
+class Contact(models.Model):
+    """sumary_line
+
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+
+    nom = models.CharField(max_length=50, null=False)
+    attitude = models.CharField(max_length=50, null=False)
+    circonstance = models.CharField(max_length=50, null=False)
+    scenario = models.CharField(max_length=50, null=False)
+    description = models.TextField(blank=True, null=True)
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Contact"
+        verbose_name_plural = "Contacts"
+
+    def __str__(self):
+        return f"{self.nom} - {self.investigateur.joueur.username}"
+
+
+class SavoirImpie(models.Model):
+    """"""
+
+    CHOICE_SAVOIR = {
+        ("Créatures connues", "Créatures connues"),
+        ("Ouvrages consultés", "Ouvrages consultés"),
+    }
+    type = models.CharField(max_length=20, choices=CHOICE_SAVOIR)
+    nom = models.CharField(max_length=50, null=False)
+    description = models.TextField(blank=True, null=True)
+    investigateur = models.ForeignKey(to=Investigateur, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Savoir Impie"
+        verbose_name_plural = "Savoirs Impies"
 
     def __str__(self):
         return f"{self.nom} - {self.investigateur.joueur.username}"

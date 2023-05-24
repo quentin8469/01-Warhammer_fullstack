@@ -396,7 +396,7 @@ class Armes(models.Model):
         return f"{self.nom} - {self.investigateur.joueur.username}"
 
 
-class Sequelle_Psycologique(models.Model):
+class SequellePsycologique(models.Model):
     """sumary_line
 
     Keyword arguments:
@@ -418,7 +418,7 @@ class Sequelle_Psycologique(models.Model):
         return f"{self.nom} - {self.investigateur.joueur.username}"
 
 
-class Sequelle_Physique(models.Model):
+class SequellePhysique(models.Model):
     """sumary_line
 
     Keyword arguments:

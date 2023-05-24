@@ -147,7 +147,9 @@ class Investigateur(models.Model):
     cercle_opposer = models.CharField(max_length=50, null=False)
     cercle_ennemis = models.CharField(max_length=50, null=False)
     etat_investigateur = models.CharField(max_length=20, choices=ETAT_INVESTIGATEUR)
-    niveau_vie = models.CharField(max_length=20, choices=CHOICE_NIVEAU_VIE)
+    niveau_vie = models.CharField(
+        max_length=20, blank=True, null=True, choices=CHOICE_NIVEAU_VIE
+    )
     date_creation = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True, blank=True)
     joueur = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE)
